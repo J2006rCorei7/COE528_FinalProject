@@ -75,6 +75,7 @@ public class Books {
         for (int i=0; i<books.length;i++) {
             if(books[i][0].toLowerCase().equals(name.toLowerCase())){
                 row = i;
+                break;
             }
         }
         if(row==-1){
