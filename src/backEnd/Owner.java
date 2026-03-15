@@ -14,7 +14,6 @@ import java.io.FileReader;
  */
 public class Owner {
     protected ArrayList<String> bookName;
-    protected ArrayList<> bookPrice;
     private final String path = "C:\\Users\\";
     
     protected  boolean addBook(String name, double price){
