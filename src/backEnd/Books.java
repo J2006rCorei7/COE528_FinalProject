@@ -22,7 +22,9 @@ public class Books {
 
     
     protected static String[][] getList() throws FileNotFoundException, IOException{
+        //EFFECTS: reads books.txt by line and sorts into a 2D ArrayList, which is typecasted and returned as String[][]
         ArrayList<String[]> temp = new ArrayList<>();
+        
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))){
             String line;
             //Splitting name and price and adding to temp ArrayList
@@ -47,6 +49,7 @@ public class Books {
     }
     
     protected static boolean add(String name, double price) throws FileNotFoundException, IOException{
+        //EFFECTS: Checks if name already exists, if not then appends book to EOF
         String[][] books = getList();
         
         //Check if name already exists
@@ -56,19 +59,19 @@ public class Books {
                 return false;
             }
         }
-        //Append Book to EOL
+        //Append Book to EOF
         try (FileWriter fileWrite = new FileWriter(filepath, true)) {
-            fileWrite.append("\n"+name + "\t" + price);
+            fileWrite.append("\n" + name + "\t" + price);
             fileWrite.close();
         }catch (IOException e) {
             System.out.println("IO Error");
             return false;
         }
-        
         return true;
     }
     
     protected static boolean remove(String name) throws FileNotFoundException, IOException{
+        //EFFECTS: Checks if name exists, if so then rewrites the file without the book
         String[][] books = getList();
         int row = -1;
         //Check if name exists
@@ -91,8 +94,6 @@ public class Books {
             }
             fileWrite.close();
         }
-        
-        
         return true;
     }
     

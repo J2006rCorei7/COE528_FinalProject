@@ -4,17 +4,10 @@
  */
 package backEnd;
 
-import java.util.ArrayList;
-import java.io.FileWriter;
-import java.io.FileReader;
-
 /**
  *
  * @author karlh
  */
-public class Owner extends State{
-    protected ArrayList<String> bookName;
-    private final String path = "C:\\Users\\";
-    
+public class Customer extends State {
     
 }
