@@ -9,5 +9,7 @@ package frontEnd;
  * @author julia
  */
 public class Main {
-    
+    public static void main(String[] args) {
+        new BookStoreApp();
+    }
 }
