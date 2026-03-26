@@ -70,6 +70,31 @@ public class UserManager {
 
     }
     
+    protected static boolean add(String name, String password, int points) throws FileNotFoundException, IOException{
+        //EFFECTS: Checks if name or password already exist, if not then appends user info to EOF
+        //Includes points
+        String[][] users = getLog();
+        
+        //Check if name or password already exist
+        for (String[] user : users) {
+            if(user[0].toLowerCase().equals(name.toLowerCase()) || user[1].equals(password)){
+                System.out.println("Name or password already exists");
+                return false;
+            }
+        }
+        //Append User to EOF
+        try (FileWriter fileWrite = new FileWriter(filepath, true)) {
+            fileWrite.append("\n" + name + "\t" + password + "\t" + points);
+            fileWrite.close();
+        }catch (IOException e) {
+            System.out.println("IO Error");
+            return false;
+        }
+        
+        return true;
+
+    }
+    
     protected static boolean remove(String name) throws FileNotFoundException, IOException{
         //EFFECTS: Checks if name exists, if so then rewrites the file without the user's info
         String[][] users = getLog();
@@ -118,6 +143,40 @@ public class UserManager {
         return null;
     }
     
+    protected static int getPoints(String name) throws IOException{
+        //EFFECTS: Checks if name matches a user, if so returns users points.
+        String[][] users = getLog();
+        
+        //Checks if name matches a user
+        for (String[] user : users) {
+            if(user[0].equals(name)){
+                return Integer.parseInt(user[2]);
+            }
+        }
+        System.out.println("Username is incorrect");
+        return 0;
+    }
+    
+    protected static void changePoints(String name, int changeVal) throws IOException{
+        //EFFECTS: Checks if name matches a user, if so changes to users points.
+        String[][] users = getLog();
+        
+        //Checks if name matches a user, if so removes user and adds them back with changed points
+        for (String[] user : users) {
+            if(user[0].equals(name)){ 
+                remove(name);
+                int points = Integer.parseInt(user[2]);
+                //If points result is positive, add points, else do nothing
+                if((points+changeVal)>=0){
+                    add(user[0],user[1],points+changeVal);
+                }
+                else{
+                    System.out.println("Negative Points sum, cancelling changePoints()");
+                }
+            }
+        }
+    }
+    
     
     
     /**
@@ -133,13 +192,14 @@ public class UserManager {
         
         String[][] users = getLog();
         for (String[] x : users){
-            System.out.println(x[0] + ", " + x[1]);
+            System.out.println(x[0] + ", " + x[1] + ", Points: " + x[2]);
         }
         System.out.println(isOwner("Julian", "badP4ssw0rd") + "\t" + isOwner("Julian", "badPassw0rd"));
         System.out.println(isCustomer("Karl", "1!j3"));
         
         remove("jane");
-        
+        changePoints("Karl", 100);
+        changePoints("Mohammed", -1);
     }
     
 }
