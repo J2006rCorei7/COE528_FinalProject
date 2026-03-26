@@ -22,6 +22,7 @@ public class UserManager {
     
     protected static String[][] getLog() throws FileNotFoundException, IOException{
         //EFFECTS: reads userInfo.txt by line and sorts into a 2D ArrayList, which is typecasted and returned as String[][]
+        //ACCESS: Owner only
         ArrayList<String[]> temp = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
             String line;
@@ -48,6 +49,7 @@ public class UserManager {
     
     protected static boolean add(String name, String password) throws FileNotFoundException, IOException{
         //EFFECTS: Checks if name or password already exist, if not then appends user info to EOF
+        //ACCESS: Owner only
         String[][] users = getLog();
         
         //Check if name or password already exist
@@ -73,6 +75,7 @@ public class UserManager {
     protected static boolean add(String name, String password, int points) throws FileNotFoundException, IOException{
         //EFFECTS: Checks if name or password already exist, if not then appends user info to EOF
         //Includes points
+        //ACCESS: Owner only
         String[][] users = getLog();
         
         //Check if name or password already exist
@@ -97,6 +100,7 @@ public class UserManager {
     
     protected static boolean remove(String name) throws FileNotFoundException, IOException{
         //EFFECTS: Checks if name exists, if so then rewrites the file without the user's info
+        //ACCESS: Owner only
         String[][] users = getLog();
         int row = -1;
         //Check if name exists
@@ -126,11 +130,13 @@ public class UserManager {
     
     protected static boolean isOwner(String name, String password){
         //EFFECTS: returns true if name and password belong to owner
+        //ACCESS: Login panel
         return name.equals(ownerName)&&password.equals(ownerPassword);
     }
     
     protected static String isCustomer(String name, String password) throws IOException{
         //EFFECTS: Checks if name & password match a user, if so returns users name
+        //ACCESS: Login panel
         String[][] users = getLog();
         
         //Checks if name & password match a user
