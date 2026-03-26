@@ -33,6 +33,7 @@ public class BookStoreApp extends JFrame{
 
     // Screen Instances (each window...)
     private LoginPanel loginPanel;
+    private OwnerHomePanel ownerHomePanel;
     
     public BookStoreApp() {
         setTitle("Book Store");
@@ -44,10 +45,12 @@ public class BookStoreApp extends JFrame{
         mainPanel = new JPanel(layout);
         
         // Panels 
-        loginPanel = new LoginPanel();
+        loginPanel = new LoginPanel(this);
+        ownerHomePanel = new OwnerHomePanel(this);
         
         // Main panel
         mainPanel.add(loginPanel, "LOGIN");
+        mainPanel.add(ownerHomePanel, "OWNERHOME");
         
         
         // Places card container into the frame.
@@ -68,6 +71,9 @@ public class BookStoreApp extends JFrame{
         layout.show(mainPanel, "LOGIN");
     }
     
-    
-    
+    public void showOwnerHome(){
+        layout.show(mainPanel, "OWNERHOME");
     }
+    
+    
+}

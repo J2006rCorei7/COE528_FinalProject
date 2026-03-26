@@ -4,17 +4,23 @@
  */
 package swingPackage;
 
+import frontEnd.BookStoreApp;
+
 /**
  *
  * @author Julian
  */
 public class LoginPanel extends javax.swing.JPanel {
 
+    private BookStoreApp app;
+    
     /**
      * Creates new form LoginPanel
+     * @param app
      */
-    public LoginPanel() {
+    public LoginPanel(BookStoreApp app) {
         initComponents();
+        this.app = app;
     }
 
     /**
@@ -35,13 +41,13 @@ public class LoginPanel extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         Center = new javax.swing.JPanel();
         button = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
         inputField = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        usrName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
+        usrPass = new javax.swing.JPasswordField();
+        errLabel = new javax.swing.JLabel();
         login_label = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -118,39 +124,39 @@ public class LoginPanel extends javax.swing.JPanel {
         Center.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         Center.setLayout(new java.awt.BorderLayout());
 
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                loginButtonActionPerformed(evt);
             }
         });
-        button.add(jButton1);
+        button.add(loginButton);
 
         Center.add(button, java.awt.BorderLayout.PAGE_END);
 
         jLabel2.setText("Username");
 
-        jTextField1.setToolTipText("Enter Username here");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        usrName.setToolTipText("Enter Username here");
+        usrName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                usrNameActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Password");
 
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        usrPass.setText("jPasswordField1");
+        usrPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                usrPassActionPerformed(evt);
             }
         });
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Awaiting Login info.......");
-        jLabel4.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        errLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errLabel.setText("Awaiting Login info.......");
+        errLabel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jLabel4PropertyChange(evt);
+                errLabelPropertyChange(evt);
             }
         });
 
@@ -161,17 +167,14 @@ public class LoginPanel extends javax.swing.JPanel {
             .addGroup(inputFieldLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(inputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(inputFieldLayout.createSequentialGroup()
-                        .addGroup(inputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jTextField1)
-                    .addComponent(jPasswordField1))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(usrName)
+                    .addComponent(usrPass))
                 .addContainerGap())
             .addGroup(inputFieldLayout.createSequentialGroup()
                 .addGap(105, 105, 105)
-                .addComponent(jLabel4)
+                .addComponent(errLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         inputFieldLayout.setVerticalGroup(
@@ -180,13 +183,13 @@ public class LoginPanel extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usrName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usrPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(errLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -233,43 +236,44 @@ public class LoginPanel extends javax.swing.JPanel {
         add(mainContent, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        app.showOwnerHome();
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_loginButtonActionPerformed
 
-    private void jLabel4PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jLabel4PropertyChange
+    private void usrNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usrNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel4PropertyChange
+    }//GEN-LAST:event_usrNameActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void errLabelPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_errLabelPropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_errLabelPropertyChange
+
+    private void usrPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usrPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usrPassActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Center;
     private javax.swing.JPanel b1;
     private javax.swing.JPanel button;
+    private javax.swing.JLabel errLabel;
     private javax.swing.JPanel inputField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton loginButton;
     private javax.swing.JPanel login_label;
     private javax.swing.JPanel mainContent;
     private javax.swing.JPanel title;
+    private javax.swing.JTextField usrName;
+    private javax.swing.JPasswordField usrPass;
     // End of variables declaration//GEN-END:variables
 }
