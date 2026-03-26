@@ -36,7 +36,7 @@ public class LoginPanel extends javax.swing.JPanel {
         Center = new javax.swing.JPanel();
         button = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jPanel8 = new javax.swing.JPanel();
+        inputField = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -50,7 +50,7 @@ public class LoginPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1000, 800));
         setLayout(new java.awt.BorderLayout());
 
-        title.setBorder(new javax.swing.border.MatteBorder(null));
+        title.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         title.setPreferredSize(new java.awt.Dimension(402, 20));
         title.setLayout(new java.awt.BorderLayout());
 
@@ -61,61 +61,61 @@ public class LoginPanel extends javax.swing.JPanel {
 
         add(title, java.awt.BorderLayout.PAGE_START);
 
-        mainContent.setLayout(new java.awt.GridLayout(3, 3));
+        mainContent.setLayout(new java.awt.GridBagLayout());
 
         javax.swing.GroupLayout b1Layout = new javax.swing.GroupLayout(b1);
         b1.setLayout(b1Layout);
         b1Layout.setHorizontalGroup(
             b1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         b1Layout.setVerticalGroup(
             b1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        mainContent.add(b1);
+        mainContent.add(b1, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        mainContent.add(jPanel2);
+        mainContent.add(jPanel2, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        mainContent.add(jPanel3);
+        mainContent.add(jPanel3, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        mainContent.add(jPanel4);
+        mainContent.add(jPanel4, new java.awt.GridBagConstraints());
 
-        Center.setBorder(new javax.swing.border.MatteBorder(null));
+        Center.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         Center.setLayout(new java.awt.BorderLayout());
 
         jButton1.setText("Login");
@@ -146,40 +146,37 @@ public class LoginPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setText("Error, login information incorrect!");
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Awaiting Login info.......");
         jLabel4.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jLabel4PropertyChange(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(75, 75, 75)
-                                .addComponent(jLabel4)))
-                        .addGap(0, 73, Short.MAX_VALUE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
-                            .addComponent(jPasswordField1))))
+        javax.swing.GroupLayout inputFieldLayout = new javax.swing.GroupLayout(inputField);
+        inputField.setLayout(inputFieldLayout);
+        inputFieldLayout.setHorizontalGroup(
+            inputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputFieldLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(inputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inputFieldLayout.createSequentialGroup()
+                        .addGroup(inputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTextField1)
+                    .addComponent(jPasswordField1))
                 .addContainerGap())
+            .addGroup(inputFieldLayout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        inputFieldLayout.setVerticalGroup(
+            inputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputFieldLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -190,10 +187,10 @@ public class LoginPanel extends javax.swing.JPanel {
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        Center.add(jPanel8, java.awt.BorderLayout.CENTER);
+        Center.add(inputField, java.awt.BorderLayout.CENTER);
 
         login_label.setPreferredSize(new java.awt.Dimension(331, 50));
         login_label.setLayout(new java.awt.BorderLayout());
@@ -205,33 +202,33 @@ public class LoginPanel extends javax.swing.JPanel {
 
         Center.add(login_label, java.awt.BorderLayout.PAGE_START);
 
-        mainContent.add(Center);
+        mainContent.add(Center, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        mainContent.add(jPanel6);
+        mainContent.add(jPanel6, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        mainContent.add(jPanel7);
+        mainContent.add(jPanel7, new java.awt.GridBagConstraints());
 
         add(mainContent, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -257,6 +254,7 @@ public class LoginPanel extends javax.swing.JPanel {
     private javax.swing.JPanel Center;
     private javax.swing.JPanel b1;
     private javax.swing.JPanel button;
+    private javax.swing.JPanel inputField;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -268,7 +266,6 @@ public class LoginPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel login_label;
