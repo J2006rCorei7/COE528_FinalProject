@@ -4,17 +4,23 @@
  */
 package swingPackage;
 
+import frontEnd.BookStoreApp;
+
 /**
  *
  * @author Julian
  */
 public class OwnerHomePanel extends javax.swing.JPanel {
 
+    
+    private BookStoreApp app;
     /**
      * Creates new form OwnerHomePanel
+     * @param app
      */
-    public OwnerHomePanel() {
+    public OwnerHomePanel(BookStoreApp app) {
         initComponents();
+        this.app = app;
     }
 
     /**
@@ -26,19 +32,77 @@ public class OwnerHomePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        title = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        ownerContent = new javax.swing.JPanel();
+        buttonPanel = new javax.swing.JPanel();
+        logButton = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        txtPanel = new javax.swing.JPanel();
+
+        setLayout(new java.awt.BorderLayout());
+
+        title.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        title.setPreferredSize(new java.awt.Dimension(402, 20));
+        title.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Bookstore Application v1");
+        title.add(jLabel1, java.awt.BorderLayout.CENTER);
+
+        add(title, java.awt.BorderLayout.PAGE_START);
+
+        ownerContent.setLayout(new java.awt.BorderLayout());
+
+        buttonPanel.setLayout(new java.awt.GridBagLayout());
+
+        logButton.setText("Logout");
+        logButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logButtonActionPerformed(evt);
+            }
+        });
+        buttonPanel.add(logButton, new java.awt.GridBagConstraints());
+
+        jButton2.setText("jButton2");
+        buttonPanel.add(jButton2, new java.awt.GridBagConstraints());
+
+        jButton1.setText("jButton1");
+        buttonPanel.add(jButton1, new java.awt.GridBagConstraints());
+
+        ownerContent.add(buttonPanel, java.awt.BorderLayout.CENTER);
+
+        javax.swing.GroupLayout txtPanelLayout = new javax.swing.GroupLayout(txtPanel);
+        txtPanel.setLayout(txtPanelLayout);
+        txtPanelLayout.setHorizontalGroup(
+            txtPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        txtPanelLayout.setVerticalGroup(
+            txtPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        ownerContent.add(txtPanel, java.awt.BorderLayout.PAGE_START);
+
+        add(ownerContent, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void logButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logButtonActionPerformed
+        app.showLogin();
+    }//GEN-LAST:event_logButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel buttonPanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton logButton;
+    private javax.swing.JPanel ownerContent;
+    private javax.swing.JPanel title;
+    private javax.swing.JPanel txtPanel;
     // End of variables declaration//GEN-END:variables
 }
