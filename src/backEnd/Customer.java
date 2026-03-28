@@ -65,4 +65,15 @@ public class Customer extends State {
         buy(finalCost);
     }
     
+    public String getName() {
+        return username;
+    }
+    
+    public int getPoints() {
+        return points;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
 }
