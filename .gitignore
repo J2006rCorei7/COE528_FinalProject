@@ -1,1 +1,7 @@
 /build/
+/dist/
+
+/nbproject/private
+/.idea/
+
+build.xml
