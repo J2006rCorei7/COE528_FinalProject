@@ -1,29 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>src/swingPackage/LoginPanel.java</url>
-            <bookmark id="1">
-                <name/>
-                <line>239</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/coe528/COE528_FinalProject/src/swingPackage/OwnerHomePanel.java</file>
-            <file>file:/C:/coe528/COE528_FinalProject/src/swingPackage/LoginPanel.java</file>
-            <file>file:/C:/coe528/COE528_FinalProject/src/frontEnd/BookStoreApp.java</file>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/karlh/OneDrive/Desktop/COE528/COE528_FinalProject/src/backEnd/Books.java</file>
-            <file>file:/C:/Users/karlh/OneDrive/Desktop/COE528/COE528_FinalProject/src/backEnd/State.java</file>
-            <file>file:/C:/Users/karlh/OneDrive/Desktop/COE528/COE528_FinalProject/src/backEnd/Owner.java</file>
-            <file>file:/C:/Users/karlh/OneDrive/Desktop/COE528/COE528_FinalProject/src/backEnd/User.java</file>
-            <file>file:/C:/Users/karlh/OneDrive/Desktop/COE528/COE528_FinalProject/src/backEnd/UserManager.java</file>
-            <file>file:/C:/Users/karlh/OneDrive/Desktop/COE528/COE528_FinalProject/src/backEnd/Customer.java</file>
+            <file>file:/C:/Users/Julian/OneDrive%20-%20Toronto%20Metropolitan%20University%20(TMU)/Year_2/Sem_2/COE_528/Labs/COE528_Final_Project/COE528_FinalProject/src/frontEnd/Main.java</file>
+            <file>file:/C:/Users/Julian/OneDrive%20-%20Toronto%20Metropolitan%20University%20(TMU)/Year_2/Sem_2/COE_528/Labs/COE528_Final_Project/COE528_FinalProject/src/backEnd/Customer.java</file>
+            <file>file:/C:/Users/Julian/OneDrive%20-%20Toronto%20Metropolitan%20University%20(TMU)/Year_2/Sem_2/COE_528/Labs/COE528_Final_Project/COE528_FinalProject/src/swingPackage/OwnerHomePanel.java</file>
+            <file>file:/C:/Users/Julian/OneDrive%20-%20Toronto%20Metropolitan%20University%20(TMU)/Year_2/Sem_2/COE_528/Labs/COE528_Final_Project/COE528_FinalProject/src/backEnd/UserManager.java</file>
+            <file>file:/C:/Users/Julian/OneDrive%20-%20Toronto%20Metropolitan%20University%20(TMU)/Year_2/Sem_2/COE_528/Labs/COE528_Final_Project/COE528_FinalProject/src/backEnd/Books.java</file>
         </group>
     </open-files>
 </project-private>
