@@ -5,6 +5,7 @@
 package backEnd;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -16,91 +17,110 @@ import java.util.ArrayList;
  *
  * @author karlh
  */
-public class Books {
+public class BookManager {
     private static final String filepath = "C:\\coe528\\books.txt";
     
+    // EFFECTS: Reads books.txt line by line and returns an ArrayList of Book objects
+    protected static ArrayList<Book> getBooks() {
+        ArrayList<Book> books = new ArrayList<>();
 
-    
-    protected static String[][] getList() throws FileNotFoundException, IOException{
-        //EFFECTS: reads books.txt by line and sorts into a 2D ArrayList, which is typecasted and returned as String[][]
-        //ACCESS: Anyone
-        ArrayList<String[]> temp = new ArrayList<>();
-        
-        try (BufferedReader br = new BufferedReader(new FileReader(filepath))){
+        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
             String line;
-            //Splitting name and price and adding to temp ArrayList
-            br.readLine();
-            while((line = br.readLine()) != null){
+            int lineCounter = 1; // Debugging tool
+            while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\t");
-                temp.add(parts);
+                
+                // If we're missing data or have extra data, skip this line
+                if (parts.length != 2) { 
+                    System.out.println("Error extracting books: missing or extra data on line: " + lineCounter);
+                    continue; 
+                }
+                
+                // Turn parts of the line into individual variables
+                String bookName = parts[0].trim();
+                double bookPrice = Double.parseDouble(parts[1].trim());
+
+                // Add new Book object to the ArrayList
+                books.add(new Book(bookName, bookPrice));
+                lineCounter++;
             }
-            br.close();
-        }catch (FileNotFoundException e){
+        } 
+        catch (FileNotFoundException e) {
             System.out.println("Could not find file");
-        }catch (IOException e){
+        } 
+        catch (IOException e) {
             System.out.println("IO Error");
         }
-        //Converting temp ArrayList to 2d array
-        //NOTE: Can be changed later to return ArrayList, will need to change use methods
-        String[][] books = new String[temp.size()][2];
-        for (int i = 0; i < temp.size(); i++) {
-            books[i] = temp.get(i);
-        }
+        
         return books;
     }
     
-    protected static boolean add(String name, double price) throws FileNotFoundException, IOException{
-        //EFFECTS: Checks if name already exists, if not then appends book to EOF
-        //ACCESS: Owner only
-        String[][] books = getList();
-        
-        //Check if name already exists
-        for (String[] book : books) {
-            if(book[0].toLowerCase().equals(name.toLowerCase())){
-                System.out.println("Name already exists");
-                return false;
+    // EFFECTS: Overwrites entire books.txt file with new data
+    protected static void saveData(ArrayList<Book> books) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filepath))) {
+            for (Book book : books) {
+                String line = book.getName() + "\t" + String.format("%.2f", book.getPrice()); // Construct line to write
+                bw.write(line);
+                bw.newLine();
             }
         }
-        //Append Book to EOF
-        try (FileWriter fileWrite = new FileWriter(filepath, true)) {
-            fileWrite.append("\n" + name + "\t" + price);
-            fileWrite.close();
-        }catch (IOException e) {
-            System.out.println("IO Error");
-            return false;
+        catch (IOException e) {
+            System.out.println("Error saving book data: IO Error");
         }
-        return true;
     }
     
-    protected static boolean remove(String name) throws FileNotFoundException, IOException{
-        //EFFECTS: Checks if name exists, if so then rewrites the file without the book
-        //ACCESS: Owner only
-        String[][] books = getList();
-        int row = -1;
-        //Check if name exists
-        for (int i=0; i<books.length;i++) {
-            if(books[i][0].toLowerCase().equals(name.toLowerCase())){
-                row = i;
-                break;
-            }
-        }
-        if(row==-1){
-            System.out.println("Name does not exist");
-            return false;
-        }
-        try (FileWriter fileWrite = new FileWriter(filepath)){
-            fileWrite.write("Name:\tPrice:");
-            for (int i=0; i<books.length;i++){
-                if (i!=row){
-                    fileWrite.append("\n" + books[i][0] + "\t" + books[i][1]);
-                }
-            }
-            fileWrite.close();
-        }
-        return true;
-    }
-    
-    
+//    protected static boolean add(String name, double price) throws FileNotFoundException, IOException{
+//        //EFFECTS: Checks if name already exists, if not then appends book to EOF
+//        //ACCESS: Owner only
+//        String[][] books = getList();
+//        
+//        //Check if name already exists
+//        for (String[] book : books) {
+//            if(book[0].toLowerCase().equals(name.toLowerCase())){
+//                System.out.println("Name already exists");
+//                return false;
+//            }
+//        }
+//        //Append Book to EOF
+//        try (FileWriter fileWrite = new FileWriter(filepath, true)) {
+//            fileWrite.append("\n" + name + "\t" + price);
+//            fileWrite.close();
+//        }catch (IOException e) {
+//            System.out.println("IO Error");
+//            return false;
+//        }
+//        return true;
+//    }
+//    
+//    protected static boolean remove(String name) throws FileNotFoundException, IOException{
+//        //EFFECTS: Checks if name exists, if so then rewrites the file without the book
+//        //ACCESS: Owner only
+//        String[][] books = getList();
+//        int row = -1;
+//        //Check if name exists
+//        for (int i=0; i<books.length;i++) {
+//            if(books[i][0].toLowerCase().equals(name.toLowerCase())){
+//                row = i;
+//                break;
+//            }
+//        }
+//        
+//        if(row==-1){
+//            System.out.println("Name does not exist");
+//            return false;
+//        }
+//        
+//        try (FileWriter fileWrite = new FileWriter(filepath)){
+//            fileWrite.write("Name:\tPrice:");
+//            for (int i=0; i<books.length;i++){
+//                if (i!=row){
+//                    fileWrite.append("\n" + books[i][0] + "\t" + books[i][1]);
+//                }
+//            }
+//            fileWrite.close();
+//        }
+//        return true;
+//    }
     
     /**
      * Temp Main
