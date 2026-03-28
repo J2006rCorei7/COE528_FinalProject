@@ -37,8 +37,8 @@ public class OwnerHomePanel extends javax.swing.JPanel {
         ownerContent = new javax.swing.JPanel();
         buttonPanel = new javax.swing.JPanel();
         logButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        customerManager = new javax.swing.JButton();
+        bookManager = new javax.swing.JButton();
         txtPanel = new javax.swing.JPanel();
 
         setLayout(new java.awt.BorderLayout());
@@ -66,11 +66,16 @@ public class OwnerHomePanel extends javax.swing.JPanel {
         });
         buttonPanel.add(logButton, new java.awt.GridBagConstraints());
 
-        jButton2.setText("jButton2");
-        buttonPanel.add(jButton2, new java.awt.GridBagConstraints());
+        customerManager.setText("Customers");
+        customerManager.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerManagerActionPerformed(evt);
+            }
+        });
+        buttonPanel.add(customerManager, new java.awt.GridBagConstraints());
 
-        jButton1.setText("jButton1");
-        buttonPanel.add(jButton1, new java.awt.GridBagConstraints());
+        bookManager.setText("Books");
+        buttonPanel.add(bookManager, new java.awt.GridBagConstraints());
 
         ownerContent.add(buttonPanel, java.awt.BorderLayout.CENTER);
 
@@ -94,11 +99,15 @@ public class OwnerHomePanel extends javax.swing.JPanel {
         app.showLogin();
     }//GEN-LAST:event_logButtonActionPerformed
 
+    private void customerManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerManagerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_customerManagerActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bookManager;
     private javax.swing.JPanel buttonPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton customerManager;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton logButton;
     private javax.swing.JPanel ownerContent;
