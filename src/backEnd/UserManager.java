@@ -191,7 +191,7 @@ public class UserManager {
      * @throws java.io.IOException   */
     
     
-    public static void main(String args[]) throws IOException{
+    /*public static void main(String args[]) throws IOException{
         add("Jane", "AbCd");
         add("Karl", "1!j3");
         add("Mohammed", "sd90");
@@ -207,5 +207,5 @@ public class UserManager {
         changePoints("Karl", 100);
         changePoints("Mohammed", -1);
     }
-    
+   */ 
 }
