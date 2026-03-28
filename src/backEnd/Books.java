@@ -107,7 +107,7 @@ public class Books {
      * @param args
      * @throws java.io.IOException   */
     
-    
+    /*
     public static void main(String args[]) throws IOException{
         add("Test", 16.32);
         add("Test2", 11);
@@ -121,5 +121,5 @@ public class Books {
         }
         remove("Test2");
     }
-    
+    */
 }
