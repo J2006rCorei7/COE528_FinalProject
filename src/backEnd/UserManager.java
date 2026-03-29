@@ -23,7 +23,8 @@ public class UserManager {
     private static final String ownerUsername = "admin";
     private static final String ownerPassword = "admin";
     
-    private static Customer currentCustomer;
+    // Initialize currentCustomer with dummy values
+    private static Customer currentCustomer = new Customer("", "", 0); 
     
     /**
     * Reads customer data from a file and returns a list of Customer objects.
