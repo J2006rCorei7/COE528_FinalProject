@@ -1,0 +1,4 @@
+Harry Potter and the Philosopher's Stone	19.99
+The Hobbit	15.50
+Clean Code	42.00
+Introduction to Java	89.95
