@@ -10,8 +10,8 @@ package backEnd;
  */
 public class Customer extends State {
     // Instance variables
-    private String username;
-    private String password;
+    private final String username;
+    private final String password;
     
     // Initialize default values
     private int points = 0;
