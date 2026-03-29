@@ -31,6 +31,7 @@ public class OwnerHomePanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         title = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -39,7 +40,6 @@ public class OwnerHomePanel extends javax.swing.JPanel {
         logButton = new javax.swing.JButton();
         customerManager = new javax.swing.JButton();
         bookManager = new javax.swing.JButton();
-        txtPanel = new javax.swing.JPanel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -49,7 +49,7 @@ public class OwnerHomePanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Bookstore Application v1");
+        jLabel1.setText("Bookstore Application v1 - Admin Homepage");
         title.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         add(title, java.awt.BorderLayout.PAGE_START);
@@ -64,7 +64,10 @@ public class OwnerHomePanel extends javax.swing.JPanel {
                 logButtonActionPerformed(evt);
             }
         });
-        buttonPanel.add(logButton, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        buttonPanel.add(logButton, gridBagConstraints);
 
         customerManager.setText("Customers");
         customerManager.addActionListener(new java.awt.event.ActionListener() {
@@ -72,25 +75,23 @@ public class OwnerHomePanel extends javax.swing.JPanel {
                 customerManagerActionPerformed(evt);
             }
         });
-        buttonPanel.add(customerManager, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        buttonPanel.add(customerManager, gridBagConstraints);
 
         bookManager.setText("Books");
-        buttonPanel.add(bookManager, new java.awt.GridBagConstraints());
+        bookManager.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookManagerActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        buttonPanel.add(bookManager, gridBagConstraints);
 
         ownerContent.add(buttonPanel, java.awt.BorderLayout.CENTER);
-
-        javax.swing.GroupLayout txtPanelLayout = new javax.swing.GroupLayout(txtPanel);
-        txtPanel.setLayout(txtPanelLayout);
-        txtPanelLayout.setHorizontalGroup(
-            txtPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
-        );
-        txtPanelLayout.setVerticalGroup(
-            txtPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        ownerContent.add(txtPanel, java.awt.BorderLayout.PAGE_START);
 
         add(ownerContent, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -100,8 +101,12 @@ public class OwnerHomePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_logButtonActionPerformed
 
     private void customerManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerManagerActionPerformed
-        // TODO add your handling code here:
+        app.showOwnerCustomer();
     }//GEN-LAST:event_customerManagerActionPerformed
+
+    private void bookManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookManagerActionPerformed
+        app.showOwnerBook();
+    }//GEN-LAST:event_bookManagerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -112,6 +117,5 @@ public class OwnerHomePanel extends javax.swing.JPanel {
     private javax.swing.JButton logButton;
     private javax.swing.JPanel ownerContent;
     private javax.swing.JPanel title;
-    private javax.swing.JPanel txtPanel;
     // End of variables declaration//GEN-END:variables
 }

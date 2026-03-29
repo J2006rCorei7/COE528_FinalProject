@@ -65,7 +65,7 @@ public class Customer {
     public String getName() {
         return username;
     }
-    
+   
     public String getPassword() {
         return password;
     }
