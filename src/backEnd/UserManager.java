@@ -13,18 +13,28 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /*
-    This class manages reading and writing to the Customers.txt file. It can retrieve the current data and it can also save the current data.
+    This class manages reading and writing to the customers.txt file. It can retrieve the current data and it can also save the current data.
     This class also handles login.
 */
 public class UserManager {
-    private static final String filepath = "C:\\coe528\\userInfo.txt";
-    private static final String ownerUsername = "Julian";
-    private static final String ownerPassword = "badP4ssw0rd";
-    private static boolean isOwner = false;
-    private static boolean isCustomer = false;
+    private static final String filepath = "src/backEnd/customers.txt"; // To be edited for Demo
     
-    // EFFECTS: Reads customers.txt line by line and returns an ArrayList of Customer objects
-    protected static ArrayList<Customer> getCustomers() {
+    // Owner credentials
+    private static final String ownerUsername = "admin";
+    private static final String ownerPassword = "admin";
+    
+    private static Customer currentCustomer;
+    
+    /**
+    * Reads customer data from a file and returns a list of Customer objects.
+    * Each line in the file is expected to contain customer information separated by tabs.
+    *
+    * EFFECTS: Processes the file line by line, creating Customer objects for valid entries.
+    *          Lines with missing or extra data are skipped.
+    *
+    * @return an ArrayList containing all valid Customer objects read from the file
+    */
+    public static ArrayList<Customer> getCustomers() {
         ArrayList<Customer> customers = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
@@ -78,13 +88,12 @@ public class UserManager {
         
         if (username.equals(ownerUsername) && password.equals(ownerPassword)) {
             System.out.println("Owner login successful.");
-            isOwner = true;
             return 1;
         }
         for (Customer customer : getCustomers()) {
             if (customer.getName().equals(username) && customer.getPassword().equals(password)) {
                 System.out.println("Customer login successful.");
-                isCustomer = true;
+                currentCustomer = customer;
                 return 0;
             }
         }
@@ -92,13 +101,12 @@ public class UserManager {
         return -1;
     }
     
-    //ACCESS: Login Panel
-    public static boolean isOwner(){
-        return isOwner;
+    public static void logout() {
+        currentCustomer = null;
     }
     
     // ACCESS: Login Panel 
-    public static boolean isCustomer() {
-        return isCustomer;
+    public static Customer getCustomer() {
+        return currentCustomer;
     }
 }

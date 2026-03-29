@@ -5,59 +5,82 @@
 package backEnd;
 
 import java.util.ArrayList;
-import java.io.FileWriter;
-import java.io.FileReader;
 
 /**
  *  This class manages functions that only the Owner is allowed to execute, such as adding and removing books and customers
  * 
  */
-public class Owner extends State{
+public class Owner extends State {
     protected ArrayList<Book> books = BookManager.getBooks();             // Retrieve list of Books from books.txt
     protected ArrayList<Customer> customers = UserManager.getCustomers(); // Retrieve list of Customers from customers.txt
-//    private final String path = "C:\\Users\\"; Dont
     
-    public void addBook(String bookName, double bookPrice) {
+    /**
+    *    Adds a new book to the collection.
+    *    @param bookName the name of the book to be added
+    *    @param bookPrice the price of the book to be added
+    *    @return true if the addition was successful, false if the book already exists
+    */
+    public boolean addBook(String bookName, double bookPrice) {
         // Check if book already exists
-        for (int i = 0; i < books.size(); i++) {
-            if (books.get(i).getName().equals(bookName)) {
+        for (Book book : books) {
+            if (book.getName().equals(bookName)) {
                 System.out.println("Book already exists."); // Print error
-                return;
+                return false;
             }
         }
         books.add(new Book(bookName, bookPrice));
+        return true;
     }
     
-    public void removeBook(String bookName) {
+    /**
+    *    Removes a book from the collection.
+    *    @param bookName the name of the book to be removed
+    *    @return true if the removal was successful, false if the book doesn't exist
+    */
+    public boolean removeBook(String bookName) {
         // Look for book in the system
-        for (int i = 0; i < books.size(); i++) {
-            if (books.get(i).getName().equals(bookName)) {
-                books.remove(i);
-                return;
+        for (Book book : books) {
+            if (book.getName().equals(bookName)) {
+                books.remove(book);
+                return true;
             }
         }
         System.out.println("Book doesn't exist."); // If we reach this point and we haven't removed the book, notify user
+        return false;
     }
     
-    public void addCustomer(String username, String password) {
+    /**
+    *    Adds a new customer to the system.
+    *    @param username the username of the customer to be added
+    *    @param password the password of the customer to be added
+    *    @return true if the addition was successful, false if the username already exists
+    */
+    public boolean addCustomer(String username, String password) {
         // Check if customer is already exists
-        for (int i = 0; i < customers.size(); i++) {
-            if (customers.get(i).getName().equals(username)) {
+        for (Customer customer : customers) {
+            if (customer.getName().equals(username)) {
                 System.out.println("Customer already exists."); // Print error
-                return;
+                return false;
             }
         }
         customers.add(new Customer(username, password));
+        return true;
     }
     
-    public void removeCustomer(String username) {
+    /**
+    *    Removes a customer from the system.
+    *    @param username the username of the book to be removed
+    *    @return true if the removal was successful, false if the customer doesn't exist
+    */
+    public boolean removeCustomer(String username) {
         // Look for customer in the system
-        for (int i = 0; i < customers.size(); i++) {
-            if (customers.get(i).getName().equals(username)) {
-                customers.remove(i);
-                return;
+        for (Customer customer : customers) {
+            if (customer.getName().equals(username)) {
+                customers.remove(customer);
+                return true;
             }
         }
         System.out.println("Customer doesn't exist."); // If we reach this point and we haven't removed the customer, notify user
+        return false;
     }
 }
