@@ -238,7 +238,6 @@ public class LoginPanel extends javax.swing.JPanel {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         app.showOwnerHome();
-
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void usrNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usrNameActionPerformed
