@@ -17,7 +17,7 @@ import java.util.ArrayList;
     This class also handles login.
 */
 public class UserManager {
-    private static final String filepath = "src/backEnd/customers.txt"; // To be edited for Demo
+    private static final String filePath = "src/backEnd/customers.txt"; // To be edited for Demo
     
     // Owner credentials
     private static final String ownerUsername = "admin";
@@ -37,7 +37,7 @@ public class UserManager {
     public static ArrayList<Customer> getCustomers() {
         ArrayList<Customer> customers = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             int lineCounter = 1; // Debugging tool
             while ((line = br.readLine()) != null) {
@@ -70,7 +70,7 @@ public class UserManager {
     
     // EFFECTS: Overwrites entire books.txt file with new data
     protected static void saveData(ArrayList<Customer> customers) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filepath))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             for (Customer customer : customers) {
                 String line = customer.getName() + "\t" + customer.getPassword() + "\t" + customer.getPoints(); // Construct line to write
                 bw.write(line);
