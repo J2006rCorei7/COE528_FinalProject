@@ -41,9 +41,9 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
         middle = new javax.swing.JPanel();
         labelAdd = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        addBook = new javax.swing.JPanel();
+        addCustomer = new javax.swing.JPanel();
         addName = new javax.swing.JTextField();
-        addPrice = new javax.swing.JTextField();
+        addPassword = new javax.swing.JTextField();
         usrNameLabel = new javax.swing.JLabel();
         passLabel = new javax.swing.JLabel();
         addButton = new java.awt.Button();
@@ -116,8 +116,8 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
 
         middle.add(labelAdd, java.awt.BorderLayout.LINE_START);
 
-        addBook.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        addBook.setLayout(new java.awt.GridBagLayout());
+        addCustomer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        addCustomer.setLayout(new java.awt.GridBagLayout());
 
         addName.setPreferredSize(new java.awt.Dimension(300, 22));
         addName.addActionListener(new java.awt.event.ActionListener() {
@@ -128,18 +128,18 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        addBook.add(addName, gridBagConstraints);
+        addCustomer.add(addName, gridBagConstraints);
 
-        addPrice.setPreferredSize(new java.awt.Dimension(300, 22));
+        addPassword.setPreferredSize(new java.awt.Dimension(300, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        addBook.add(addPrice, gridBagConstraints);
+        addCustomer.add(addPassword, gridBagConstraints);
 
         usrNameLabel.setText("Username");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        addBook.add(usrNameLabel, gridBagConstraints);
+        addCustomer.add(usrNameLabel, gridBagConstraints);
 
         passLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         passLabel.setText("Password");
@@ -147,28 +147,33 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        addBook.add(passLabel, gridBagConstraints);
+        addCustomer.add(passLabel, gridBagConstraints);
 
         addButton.setActionCommand("addButtonAction");
         addButton.setLabel("Confirm");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.ipadx = 31;
-        addBook.add(addButton, gridBagConstraints);
+        addCustomer.add(addButton, gridBagConstraints);
 
         addFeedback.setText("Add new User to Database");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        addBook.add(addFeedback, gridBagConstraints);
+        addCustomer.add(addFeedback, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 48;
-        addBook.add(filler1, gridBagConstraints);
+        addCustomer.add(filler1, gridBagConstraints);
 
-        middle.add(addBook, java.awt.BorderLayout.CENTER);
+        middle.add(addCustomer, java.awt.BorderLayout.CENTER);
 
         content.add(middle, java.awt.BorderLayout.CENTER);
 
@@ -257,6 +262,30 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_delButtonActionPerformed
 
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        String name = addName.getText();
+        String password = addPassword.getText();
+        
+        Owner owner = new Owner();
+        boolean result = false;
+        result = owner.addCustomer(name, password);
+        
+        if (result == true){
+           addFeedback.setText("Successfully Executed.");
+           refreshTable();
+        }
+        else{
+           addFeedback.setText("Error!");
+        }
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_addButtonActionPerformed
+
     
     private void refreshTable(){
         customers = UserManager.getCustomers();
@@ -291,11 +320,11 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel addBook;
     private java.awt.Button addButton;
+    private javax.swing.JPanel addCustomer;
     private javax.swing.JLabel addFeedback;
     private javax.swing.JTextField addName;
-    private javax.swing.JTextField addPrice;
+    private javax.swing.JTextField addPassword;
     private javax.swing.JButton backButton;
     private javax.swing.JPanel bottom;
     private javax.swing.JPanel content;
