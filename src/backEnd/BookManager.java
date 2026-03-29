@@ -14,11 +14,11 @@ import java.util.ArrayList;
 
 
 /**
- *
- * @author karlh
+ *  This class manages reading and writing to the books.txt file. It can retrieve the current data and it can also save the current data.
+ * 
  */
 public class BookManager {
-    private static final String filepath = "C:\\coe528\\books.txt";
+    private static final String filepath = "src/backEnd/books.txt"; // To be edited for Demo
     
     // EFFECTS: Reads books.txt line by line and returns an ArrayList of Book objects
     protected static ArrayList<Book> getBooks() {
@@ -68,78 +68,4 @@ public class BookManager {
             System.out.println("Error saving book data: IO Error");
         }
     }
-    
-//    protected static boolean add(String name, double price) throws FileNotFoundException, IOException{
-//        //EFFECTS: Checks if name already exists, if not then appends book to EOF
-//        //ACCESS: Owner only
-//        String[][] books = getList();
-//        
-//        //Check if name already exists
-//        for (String[] book : books) {
-//            if(book[0].toLowerCase().equals(name.toLowerCase())){
-//                System.out.println("Name already exists");
-//                return false;
-//            }
-//        }
-//        //Append Book to EOF
-//        try (FileWriter fileWrite = new FileWriter(filepath, true)) {
-//            fileWrite.append("\n" + name + "\t" + price);
-//            fileWrite.close();
-//        }catch (IOException e) {
-//            System.out.println("IO Error");
-//            return false;
-//        }
-//        return true;
-//    }
-//    
-//    protected static boolean remove(String name) throws FileNotFoundException, IOException{
-//        //EFFECTS: Checks if name exists, if so then rewrites the file without the book
-//        //ACCESS: Owner only
-//        String[][] books = getList();
-//        int row = -1;
-//        //Check if name exists
-//        for (int i=0; i<books.length;i++) {
-//            if(books[i][0].toLowerCase().equals(name.toLowerCase())){
-//                row = i;
-//                break;
-//            }
-//        }
-//        
-//        if(row==-1){
-//            System.out.println("Name does not exist");
-//            return false;
-//        }
-//        
-//        try (FileWriter fileWrite = new FileWriter(filepath)){
-//            fileWrite.write("Name:\tPrice:");
-//            for (int i=0; i<books.length;i++){
-//                if (i!=row){
-//                    fileWrite.append("\n" + books[i][0] + "\t" + books[i][1]);
-//                }
-//            }
-//            fileWrite.close();
-//        }
-//        return true;
-//    }
-    
-    /**
-     * Temp Main
-     * @param args
-     * @throws java.io.IOException   */
-    
-    /*
-    public static void main(String args[]) throws IOException{
-        add("Test", 16.32);
-        add("Test2", 11);
-        add("Test3", 13);
-        add("Test 4", 11);
-        
-        
-        String[][] books = getList();
-        for (String[] b : books){
-        System.out.println(b[0] + ", " + b[1]);
-        }
-        remove("Test2");
-    }
-    */
 }

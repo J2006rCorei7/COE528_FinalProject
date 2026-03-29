@@ -5,8 +5,8 @@
 package backEnd;
 
 /**
- *
- * @author abdum
+ *  This is a Book object that stores info about a book such as name and price. 
+ * 
  */
 public class Book {
     private String name;
