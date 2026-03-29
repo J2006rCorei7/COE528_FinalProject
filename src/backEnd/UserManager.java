@@ -52,9 +52,10 @@ public class UserManager {
                 // Turn parts of the line into individual variables
                 String username = parts[0].trim();
                 String password = parts[1].trim();
+                int points = Integer.parseInt(parts[2].trim()); 
 
                 // Add new Book object to the ArrayList
-                customers.add(new Customer(username, password));
+                customers.add(new Customer(username, password, points));
                 lineCounter++;
             }
         } 

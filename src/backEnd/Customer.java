@@ -24,6 +24,12 @@ public class Customer extends State {
         this.password = password;
     }
     
+    public Customer(String username, String password, int points) { 
+        this.username = username;
+        this.password = password;
+        this.points = points;
+    }
+    
     // EFFECTS: Adds points to this customer
     // ACCESS: Only buy() and redeemPointsAndBuy() are allowed to manipulate customer points
     private void addPoints(int points) {
