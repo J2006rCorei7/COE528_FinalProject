@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *  This class manages functions that only the Owner is allowed to execute, such as adding and removing books and customers
  * 
  */
-public class Owner extends State {
+public class Owner {
     protected ArrayList<Book> books = BookManager.getBooks();             // Retrieve list of Books from books.txt
     protected ArrayList<Customer> customers = UserManager.getCustomers(); // Retrieve list of Customers from customers.txt
     
@@ -29,6 +29,7 @@ public class Owner extends State {
             }
         }
         books.add(new Book(bookName, bookPrice));
+        BookManager.saveData(books);
         return true;
     }
     
@@ -42,6 +43,7 @@ public class Owner extends State {
         for (Book book : books) {
             if (book.getName().equals(bookName)) {
                 books.remove(book);
+                BookManager.saveData(books);
                 return true;
             }
         }
@@ -64,6 +66,7 @@ public class Owner extends State {
             }
         }
         customers.add(new Customer(username, password));
+        UserManager.saveData(customers);
         return true;
     }
     
@@ -77,6 +80,7 @@ public class Owner extends State {
         for (Customer customer : customers) {
             if (customer.getName().equals(username)) {
                 customers.remove(customer);
+                UserManager.saveData(customers);
                 return true;
             }
         }
