@@ -21,7 +21,11 @@ public class OwnerBookPanel extends javax.swing.JPanel {
     public OwnerBookPanel(BookStoreApp app) {
         initComponents();
         this.app = app;
-
+        
+        bookTable.setRowSelectionAllowed(true);
+        bookTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        
+        
         refreshTable();
 
     }
@@ -247,6 +251,11 @@ public class OwnerBookPanel extends javax.swing.JPanel {
 
         delButton.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         delButton.setText("Delete");
+        delButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delButtonActionPerformed(evt);
+            }
+        });
         delBook.add(delButton, java.awt.BorderLayout.CENTER);
 
         bottom.add(delBook, java.awt.BorderLayout.CENTER);
@@ -289,8 +298,62 @@ public class OwnerBookPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void bookTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookTableMouseClicked
-        // TODO add your handling code here:
+        int[] rows = bookTable.getSelectedRows();
+        
+        // check if something is or is not selected
+        if (rows.length == 0){
+            delLabel.setText("Book Selected to Delete: ----none-----");
+        } 
+        else if (rows.length == 1) {
+            String name = bookTable.getValueAt(rows[0], 0).toString();
+            delLabel.setText("Book Selected to Delete: " + name);
+        }
+        else {
+            delLabel.setText("Number of Books Selected to Delete: " + rows.length);
+        }
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_bookTableMouseClicked
+
+    private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
+        int[] rows = bookTable.getSelectedRows();
+
+        if (rows.length == 0) {
+            delLabel.setText("Book Selected to Delete: ----none-----");
+            return;
+        }
+
+        Owner owner = new Owner();
+        ArrayList<String> delBookList = new ArrayList<>();
+
+        // collect selected book names first
+        for (int row : rows) {
+            String name = bookTable.getValueAt(row, 0).toString();
+            delBookList.add(name);
+        }
+
+        boolean allRemoved = true;
+
+        // now delete them
+        for (String name : delBookList) {
+            boolean removed = owner.removeBook(name);
+            if (!removed) {
+                allRemoved = false;
+            }
+        }
+
+        refreshTable();
+
+        if (allRemoved) {
+            delLabel.setText("Deleted selected book(s).");
+        } else {
+            delLabel.setText("Some selected books could not be deleted.");
+        }
+    }//GEN-LAST:event_delButtonActionPerformed
 
     private void refreshTable(){
         books = BookManager.getBooks();
