@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package swingPackage;
-
+import backEnd.*;
+import frontEnd.BookStoreApp;
+import java.util.ArrayList;
 /**
  *
  * @author Julian
@@ -13,8 +15,11 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
     /**
      * Creates new form OwnerCustomerPanel
      */
-    public OwnerCustomerPanel() {
+    public OwnerCustomerPanel(BookStoreApp app) {
         initComponents();
+        this.app = app;
+        refreshTable();
+        
     }
 
     /**
@@ -32,15 +37,15 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
         content = new javax.swing.JPanel();
         top = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        UserTable = new javax.swing.JTable();
+        userTable = new javax.swing.JTable();
         middle = new javax.swing.JPanel();
         labelAdd = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         addBook = new javax.swing.JPanel();
         addName = new javax.swing.JTextField();
         addPrice = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        usrNameLabel = new javax.swing.JLabel();
+        passLabel = new javax.swing.JLabel();
         addButton = new java.awt.Button();
         addFeedback = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
@@ -51,9 +56,11 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
         exitBook = new javax.swing.JPanel();
         labelExit = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
         delBook = new javax.swing.JPanel();
+        delFeedback = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        delButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1000, 800));
         setLayout(new java.awt.BorderLayout());
@@ -64,7 +71,7 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Bookstore Application v1");
+        jLabel1.setText("Bookstore Application v1 - Customer Manager");
         title.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         add(title, java.awt.BorderLayout.PAGE_START);
@@ -74,7 +81,7 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
         top.setPreferredSize(new java.awt.Dimension(100, 258));
         top.setLayout(new java.awt.BorderLayout());
 
-        UserTable.setModel(new javax.swing.table.DefaultTableModel(
+        userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -90,7 +97,7 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(UserTable);
+        jScrollPane1.setViewportView(userTable);
 
         top.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -129,18 +136,18 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 4;
         addBook.add(addPrice, gridBagConstraints);
 
-        jLabel3.setText("Username");
+        usrNameLabel.setText("Username");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        addBook.add(jLabel3, gridBagConstraints);
+        addBook.add(usrNameLabel, gridBagConstraints);
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("Password");
+        passLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        passLabel.setText("Password");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        addBook.add(jLabel4, gridBagConstraints);
+        addBook.add(passLabel, gridBagConstraints);
 
         addButton.setActionCommand("addButtonAction");
         addButton.setLabel("Confirm");
@@ -197,7 +204,6 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
         labelExit.add(jLabel7, java.awt.BorderLayout.CENTER);
 
         exitBook.add(labelExit, java.awt.BorderLayout.PAGE_START);
-        exitBook.add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
         backButton.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         backButton.setText("Back");
@@ -211,6 +217,27 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
         bottom.add(exitBook, java.awt.BorderLayout.LINE_END);
 
         delBook.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        delBook.setLayout(new java.awt.BorderLayout());
+
+        delFeedback.setPreferredSize(new java.awt.Dimension(100, 70));
+        delFeedback.setRequestFocusEnabled(false);
+        delFeedback.setLayout(new java.awt.BorderLayout());
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Customer data Selected to Delete: ----none-----");
+        delFeedback.add(jLabel3, java.awt.BorderLayout.CENTER);
+
+        delBook.add(delFeedback, java.awt.BorderLayout.PAGE_START);
+
+        delButton.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        delButton.setText("Delete");
+        delButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delButtonActionPerformed(evt);
+            }
+        });
+        delBook.add(delButton, java.awt.BorderLayout.CENTER);
+
         bottom.add(delBook, java.awt.BorderLayout.CENTER);
 
         content.add(bottom, java.awt.BorderLayout.PAGE_END);
@@ -223,12 +250,47 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_addNameActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        app.showOwnerHome();
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delButtonActionPerformed
+
+    
+    private void refreshTable(){
+        customers = UserManager.getCustomers();
+        
+        javax.swing.table.DefaultTableModel model = 
+                   (javax.swing.table.DefaultTableModel) userTable.getModel();
+        
+        // Clear old rows
+        model.setRowCount(0);
+        
+        
+        
+        for (Customer customer : customers){
+            model.addRow(new Object[]{
+            customer.getName(),
+            customer.getPassword(),
+            customer.getPoints()
+             
+        });
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
+    // Variables declaratation - Manually created
+    private ArrayList<Customer> customers;
+    private BookStoreApp app;
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable UserTable;
     private javax.swing.JPanel addBook;
     private java.awt.Button addButton;
     private javax.swing.JLabel addFeedback;
@@ -238,22 +300,25 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
     private javax.swing.JPanel bottom;
     private javax.swing.JPanel content;
     private javax.swing.JPanel delBook;
+    private javax.swing.JButton delButton;
+    private javax.swing.JPanel delFeedback;
     private javax.swing.JPanel exitBook;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel labelAdd;
     private javax.swing.JPanel labelAdd1;
     private javax.swing.JPanel labelExit;
     private javax.swing.JPanel middle;
+    private javax.swing.JLabel passLabel;
     private javax.swing.JPanel title;
     private javax.swing.JPanel top;
+    private javax.swing.JTable userTable;
+    private javax.swing.JLabel usrNameLabel;
     // End of variables declaration//GEN-END:variables
 }
