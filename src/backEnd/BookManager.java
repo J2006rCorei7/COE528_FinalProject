@@ -20,8 +20,10 @@ import java.util.ArrayList;
 public class BookManager {
     private static final String filepath = "src/backEnd/books.txt"; // To be edited for Demo
     
+    private ArrayList<Book> shoppingCart;
+    
     // EFFECTS: Reads books.txt line by line and returns an ArrayList of Book objects
-    protected static ArrayList<Book> getBooks() {
+    public static ArrayList<Book> getBooks() {
         ArrayList<Book> books = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
@@ -53,6 +55,28 @@ public class BookManager {
         }
         
         return books;
+    }
+    
+    public static ArrayList<Book> getBooks(String[] bookNames) {
+        ArrayList<Book> selectedBooks = new ArrayList<>();
+        
+        for (Book book : getBooks()) {
+            for (String selectedBook : bookNames) {
+                if (book.getName().equals(selectedBook)) {
+                    selectedBooks.add(book);
+                }
+            }
+        }
+        
+        return selectedBooks;
+    }
+    
+    public void setShoppingCart(String[] bookNames) {
+        shoppingCart = getBooks(bookNames);
+    }
+    
+    public ArrayList<Book> getShoppingCart() {
+        return shoppingCart;
     }
     
     // EFFECTS: Overwrites entire books.txt file with new data
