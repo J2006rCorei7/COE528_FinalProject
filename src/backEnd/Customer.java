@@ -5,20 +5,21 @@
 package backEnd;
 
 /**
+ *  This is a Customer object that stores info about a customer such as username, password, points and status. 
  *
- * @author moabdu
  */
 public class Customer extends State {
     // Instance variables
-    private String username;
-    private String password;
-    private Books books;
+    private final String username;
+    private final String password;
     
     // Initialize default values
     private int points = 0;
     private String status = "Silver";
     
-    public Customer(String username, String password) {
+    // Constructor only requires username and password because all customers start out with
+    // the same status and amount of points.
+    public Customer(String username, String password) { 
         this.username = username;
         this.password = password;
     }
@@ -30,7 +31,7 @@ public class Customer extends State {
         if (this.points >= 1000) {status = "Gold";} // If total points now exceeds 1000, upgrade to Gold status
     }
     
-    // EFFECTS: Removes points to this customer
+    // EFFECTS: Removes points from this customer
     // ACCESS: Only buy() and redeemPointsAndBuy() are allowed to manipulate customer points
     private void removePoints(int points) {
         this.points -= points;                       // Remove points to total points
@@ -65,4 +66,20 @@ public class Customer extends State {
         buy(finalCost);
     }
     
+    public String getName() {
+        return username;
+    }
+    
+    // ACCESS: UserManager
+    protected String getPassword() {
+        return password;
+    }
+    
+    public int getPoints() {
+        return points;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
 }

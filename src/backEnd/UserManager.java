@@ -5,207 +5,108 @@
 package backEnd;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- *
- * @author karlh
- */
+/*
+    This class manages reading and writing to the customers.txt file. It can retrieve the current data and it can also save the current data.
+    This class also handles login.
+*/
 public class UserManager {
-    private static final String filepath = "C:\\coe528\\userInfo.txt";
-    private static final String ownerName = "Julian";
-    private static final String ownerPassword = "badP4ssw0rd";
+    private static final String filepath = "src/backEnd/customers.txt"; // To be edited for Demo
     
-    protected static String[][] getLog() throws FileNotFoundException, IOException{
-        //EFFECTS: reads userInfo.txt by line and sorts into a 2D ArrayList, which is typecasted and returned as String[][]
-        //ACCESS: Owner only
-        ArrayList<String[]> temp = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
-            String line;
-            //Splitting name and price and adding to temp ArrayList
-            br.readLine();
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split("\t");
-                temp.add(parts);
-            }
-            br.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Could not find file");
-        } catch (IOException e) {
-            System.out.println("IO Error");
-        }
-        //Converting temp ArrayList to 2d array
-        //NOTE: Can be changed later to return ArrayList, will need to change use methods
-        String[][] users = new String[temp.size()][3];
-        for (int i = 0; i < temp.size(); i++) {
-            users[i] = temp.get(i);
-        }
-        return users;
-    }
+    // Owner credentials
+    private static final String ownerUsername = "admin";
+    private static final String ownerPassword = "admin";
     
-    protected static boolean add(String name, String password) throws FileNotFoundException, IOException{
-        //EFFECTS: Checks if name or password already exist, if not then appends user info to EOF
-        //ACCESS: Owner only
-        String[][] users = getLog();
-        
-        //Check if name or password already exist
-        for (String[] user : users) {
-            if(user[0].toLowerCase().equals(name.toLowerCase()) || user[1].equals(password)){
-                System.out.println("Name or password already exists");
-                return false;
-            }
-        }
-        //Append User to EOF
-        try (FileWriter fileWrite = new FileWriter(filepath, true)) {
-            fileWrite.append("\n" + name + "\t" + password + "\t" + 0);
-            fileWrite.close();
-        }catch (IOException e) {
-            System.out.println("IO Error");
-            return false;
-        }
-        
-        return true;
-
-    }
-    
-    protected static boolean add(String name, String password, int points) throws FileNotFoundException, IOException{
-        //EFFECTS: Checks if name or password already exist, if not then appends user info to EOF
-        //Includes points
-        //ACCESS: Owner only
-        String[][] users = getLog();
-        
-        //Check if name or password already exist
-        for (String[] user : users) {
-            if(user[0].toLowerCase().equals(name.toLowerCase()) || user[1].equals(password)){
-                System.out.println("Name or password already exists");
-                return false;
-            }
-        }
-        //Append User to EOF
-        try (FileWriter fileWrite = new FileWriter(filepath, true)) {
-            fileWrite.append("\n" + name + "\t" + password + "\t" + points);
-            fileWrite.close();
-        }catch (IOException e) {
-            System.out.println("IO Error");
-            return false;
-        }
-        
-        return true;
-
-    }
-    
-    protected static boolean remove(String name) throws FileNotFoundException, IOException{
-        //EFFECTS: Checks if name exists, if so then rewrites the file without the user's info
-        //ACCESS: Owner only
-        String[][] users = getLog();
-        int row = -1;
-        //Check if name exists
-        for (int i=0; i<users.length;i++) {
-            if(users[i][0].toLowerCase().equals(name.toLowerCase())){
-                row = i;
-                break;
-            }
-        }
-        if(row==-1){
-            System.out.println("Name does not exist");
-            return false;
-        }
-        try (FileWriter fileWrite = new FileWriter(filepath)){
-            fileWrite.write("Name:\tPassword:\tPoints:");
-            for (int i=0; i<users.length;i++){
-                if (i!=row){
-                    fileWrite.append("\n" + users[i][0] + "\t" + users[i][1] + "\t" + users[i][2]);
-                }
-            }
-            fileWrite.close();
-        }
-        
-        
-        return true;
-    }
-    
-    protected static boolean isOwner(String name, String password){
-        //EFFECTS: returns true if name and password belong to owner
-        //ACCESS: Login panel
-        return name.equals(ownerName)&&password.equals(ownerPassword);
-    }
-    
-    protected static String isCustomer(String name, String password) throws IOException{
-        //EFFECTS: Checks if name & password match a user, if so returns users name
-        //ACCESS: Login panel
-        String[][] users = getLog();
-        
-        //Checks if name & password match a user
-        for (String[] user : users) {
-            if(user[0].equals(name) && user[1].equals(password)){
-                return user[0];
-            }
-        }
-        System.out.println("Username or password are incorrect");
-        return null;
-    }
-    
-    protected static int getPoints(String name) throws IOException{
-        //EFFECTS: Checks if name matches a user, if so returns users points.
-        String[][] users = getLog();
-        
-        //Checks if name matches a user
-        for (String[] user : users) {
-            if(user[0].equals(name)){
-                return Integer.parseInt(user[2]);
-            }
-        }
-        System.out.println("Username is incorrect");
-        return 0;
-    }
-    
-    protected static void changePoints(String name, int changeVal) throws IOException{
-        //EFFECTS: Checks if name matches a user, if so changes to users points.
-        String[][] users = getLog();
-        
-        //Checks if name matches a user, if so removes user and adds them back with changed points
-        for (String[] user : users) {
-            if(user[0].equals(name)){ 
-                remove(name);
-                int points = Integer.parseInt(user[2]);
-                //If points result is positive, add points, else do nothing
-                if((points+changeVal)>=0){
-                    add(user[0],user[1],points+changeVal);
-                }
-                else{
-                    System.out.println("Negative Points sum, cancelling changePoints()");
-                }
-            }
-        }
-    }
-    
-    
+    private static Customer currentCustomer;
     
     /**
-     * Temp Main
-     * @param args
-     * @throws java.io.IOException   */
-    
-    
-    /*public static void main(String args[]) throws IOException{
-        add("Jane", "AbCd");
-        add("Karl", "1!j3");
-        add("Mohammed", "sd90");
-        
-        String[][] users = getLog();
-        for (String[] x : users){
-            System.out.println(x[0] + ", " + x[1] + ", Points: " + x[2]);
+    * Reads customer data from a file and returns a list of Customer objects.
+    * Each line in the file is expected to contain customer information separated by tabs.
+    *
+    * EFFECTS: Processes the file line by line, creating Customer objects for valid entries.
+    *          Lines with missing or extra data are skipped.
+    *
+    * @return an ArrayList containing all valid Customer objects read from the file
+    */
+    public static ArrayList<Customer> getCustomers() {
+        ArrayList<Customer> customers = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+            String line;
+            int lineCounter = 1; // Debugging tool
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split("\t");
+                
+                // If we're missing data or have extra data, skip this line
+                if (parts.length != 3) { 
+                    System.out.println("Error extracting customers: missing or extra data on line: " + lineCounter);
+                    continue; 
+                }
+                
+                // Turn parts of the line into individual variables
+                String username = parts[0].trim();
+                String password = parts[1].trim();
+
+                // Add new Book object to the ArrayList
+                customers.add(new Customer(username, password));
+                lineCounter++;
+            }
+        } 
+        catch (FileNotFoundException e) {
+            System.out.println("Could not find file");
+        } 
+        catch (IOException e) {
+            System.out.println("IO Error");
         }
-        System.out.println(isOwner("Julian", "badP4ssw0rd") + "\t" + isOwner("Julian", "badPassw0rd"));
-        System.out.println(isCustomer("Karl", "1!j3"));
         
-        remove("jane");
-        changePoints("Karl", 100);
-        changePoints("Mohammed", -1);
+        return customers;
     }
-   */ 
+    
+    // EFFECTS: Overwrites entire books.txt file with new data
+    protected static void saveData(ArrayList<Customer> customers) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filepath))) {
+            for (Customer customer : customers) {
+                String line = customer.getName() + "\t" + customer.getPassword() + "\t" + customer.getPoints(); // Construct line to write
+                bw.write(line);
+                bw.newLine();
+            }
+        }
+        catch (IOException e) {
+            System.out.println("Error saving customer data: IO Error");
+        }
+    }
+    
+    // EFFECTS: Authorizes username and input; returns 1 for Owner, returns 0 for Customer, and returns -1 for error
+    public static int login(String username, char[] c_password) {
+        String password = new String(c_password); // Convert char[] password into String password
+        
+        if (username.equals(ownerUsername) && password.equals(ownerPassword)) {
+            System.out.println("Owner login successful.");
+            return 1;
+        }
+        for (Customer customer : getCustomers()) {
+            if (customer.getName().equals(username) && customer.getPassword().equals(password)) {
+                System.out.println("Customer login successful.");
+                currentCustomer = customer;
+                return 0;
+            }
+        }
+        System.out.println("Error logging in: incorrect username or password.");
+        return -1;
+    }
+    
+    public static void logout() {
+        currentCustomer = null;
+    }
+    
+    // ACCESS: Login Panel 
+    public static Customer getCustomer() {
+        return currentCustomer;
+    }
 }

@@ -5,16 +5,86 @@
 package backEnd;
 
 import java.util.ArrayList;
-import java.io.FileWriter;
-import java.io.FileReader;
 
 /**
- *
- * @author karlh
+ *  This class manages functions that only the Owner is allowed to execute, such as adding and removing books and customers
+ * 
  */
-public class Owner extends State{
-    protected ArrayList<String> bookName;
-    private final String path = "C:\\Users\\";
+public class Owner {
+    protected ArrayList<Book> books = BookManager.getBooks();             // Retrieve list of Books from books.txt
+    protected ArrayList<Customer> customers = UserManager.getCustomers(); // Retrieve list of Customers from customers.txt
     
+    /**
+    *    Adds a new book to the collection.
+    *    @param bookName the name of the book to be added
+    *    @param bookPrice the price of the book to be added
+    *    @return true if the addition was successful, false if the book already exists
+    */
+    public boolean addBook(String bookName, double bookPrice) {
+        // Check if book already exists
+        for (Book book : books) {
+            if (book.getName().equals(bookName)) {
+                System.out.println("Book already exists."); // Print error
+                return false;
+            }
+        }
+        books.add(new Book(bookName, bookPrice));
+        BookManager.saveData(books);
+        return true;
+    }
     
+    /**
+    *    Removes a book from the collection.
+    *    @param bookName the name of the book to be removed
+    *    @return true if the removal was successful, false if the book doesn't exist
+    */
+    public boolean removeBook(String bookName) {
+        // Look for book in the system
+        for (Book book : books) {
+            if (book.getName().equals(bookName)) {
+                books.remove(book);
+                BookManager.saveData(books);
+                return true;
+            }
+        }
+        System.out.println("Book doesn't exist."); // If we reach this point and we haven't removed the book, notify user
+        return false;
+    }
+    
+    /**
+    *    Adds a new customer to the system.
+    *    @param username the username of the customer to be added
+    *    @param password the password of the customer to be added
+    *    @return true if the addition was successful, false if the username already exists
+    */
+    public boolean addCustomer(String username, String password) {
+        // Check if customer is already exists
+        for (Customer customer : customers) {
+            if (customer.getName().equals(username)) {
+                System.out.println("Customer already exists."); // Print error
+                return false;
+            }
+        }
+        customers.add(new Customer(username, password));
+        UserManager.saveData(customers);
+        return true;
+    }
+    
+    /**
+    *    Removes a customer from the system.
+    *    @param username the username of the book to be removed
+    *    @return true if the removal was successful, false if the customer doesn't exist
+    */
+    public boolean removeCustomer(String username) {
+        // Look for customer in the system
+        for (Customer customer : customers) {
+            if (customer.getName().equals(username)) {
+                customers.remove(customer);
+                UserManager.saveData(customers);
+                return true;
+            }
+        }
+        System.out.println("Customer doesn't exist."); // If we reach this point and we haven't removed the customer, notify user
+        return false;
+    }
 }
