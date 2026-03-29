@@ -100,7 +100,7 @@ public class OwnerHomePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_logButtonActionPerformed
 
     private void customerManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerManagerActionPerformed
-        // TODO add your handling code here:
+        app.showOwnerBook();
     }//GEN-LAST:event_customerManagerActionPerformed
 
 

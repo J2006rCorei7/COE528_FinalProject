@@ -4,17 +4,34 @@
  */
 package swingPackage;
 
+import backEnd.*;
+import frontEnd.BookStoreApp;
+import java.util.ArrayList;
+
 /**
  *
  * @author Julian
  */
 public class OwnerBookPanel extends javax.swing.JPanel {
-
+    
+    
     /**
      * Creates new form OwnerBookPanel
      */
-    public OwnerBookPanel() {
+    public OwnerBookPanel(BookStoreApp app) {
         initComponents();
+        this.app = app;
+        
+        
+        
+        refreshTable();
+        
+        
+        
+        
+        
+        
+        
     }
 
     /**
@@ -223,9 +240,35 @@ public class OwnerBookPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_addNameActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        app.showOwnerHome();
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void refreshTable(){
+        books = BookManager.getBooks();
+        
+        javax.swing.table.DefaultTableModel model = 
+                   (javax.swing.table.DefaultTableModel) bookTable.getModel();
+        
+        // Clear old rows
+        model.setRowCount(0);
+        
+        
+        
+        for (Book book : books){
+            model.addRow(new Object[]{
+            book.getName(),
+            book.getPrice()
+        });
+        }
+        
+        
+    }
+    
+    
+    
+    // Variables declaratation - Manually created
+    private ArrayList<Book> books;
+    private BookStoreApp app;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addBook;
