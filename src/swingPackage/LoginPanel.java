@@ -59,6 +59,11 @@ public class LoginPanel extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1000, 800));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
         setLayout(new java.awt.BorderLayout());
 
         title.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -262,27 +267,32 @@ public class LoginPanel extends javax.swing.JPanel {
         if (result == 1){
             app.showOwnerHome();
             errLabel.setText("Awaiting Login Info......");
+            clearFields();
         } 
         else if (result == 0){
-            
+            app.showCustomerHome();
+            errLabel.setText("Awaiting Login Info......");
+            clearFields();
         }
         else {
             errLabel.setText("Error, Incorrect login info. Try again.");
+            clearFields();
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
         
     }//GEN-LAST:event_loginButtonActionPerformed
 
+    
+    
+    public void clearFields() {
+    usrName.setText("");
+    usrPass.setText("");
+    }
+    
+    
+    
+    
     private void usrNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usrNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usrNameActionPerformed
@@ -290,6 +300,10 @@ public class LoginPanel extends javax.swing.JPanel {
     private void usrPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usrPassActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usrPassActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
