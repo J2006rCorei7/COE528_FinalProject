@@ -9,8 +9,8 @@ package backEnd;
  * 
  */
 public class Book {
-    private String name;
-    private double price;
+    private final String name;
+    private final double price;
     
     public Book(String name, double price) {
         this.name = name;
@@ -23,13 +23,5 @@ public class Book {
     
     public double getPrice() {
         return price;
-    }
-    
-    protected void setName(String name) {
-        this.name = name;
-    }
-    
-    protected void setPrice(double price) {
-        this.price = price;
     }
 }

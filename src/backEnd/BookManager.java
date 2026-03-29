@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * 
  */
 public class BookManager {
-    private static final String filepath = "src/backEnd/books.txt"; // To be edited for Demo
+    private static final String filePath = "src/backEnd/books.txt"; // To be edited for Demo
     
     private ArrayList<Book> shoppingCart;
     
@@ -26,7 +26,7 @@ public class BookManager {
     public static ArrayList<Book> getBooks() {
         ArrayList<Book> books = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             int lineCounter = 1; // Debugging tool
             while ((line = br.readLine()) != null) {
@@ -81,7 +81,7 @@ public class BookManager {
     
     // EFFECTS: Overwrites entire books.txt file with new data
     protected static void saveData(ArrayList<Book> books) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filepath))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             for (Book book : books) {
                 String line = book.getName() + "\t" + String.format("%.2f", book.getPrice()); // Construct line to write
                 bw.write(line);
