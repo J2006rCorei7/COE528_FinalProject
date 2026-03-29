@@ -66,8 +66,7 @@ public class Customer {
         return username;
     }
     
-    // ACCESS: UserManager
-    protected String getPassword() {
+    public String getPassword() {
         return password;
     }
     
