@@ -70,8 +70,8 @@ public class Customer extends State {
         return username;
     }
     
-    // ACCESS: UserManager
-    protected String getPassword() {
+    // ACCESS: UserManager ------- not anymore :C
+    public String getPassword() {
         return password;
     }
     
