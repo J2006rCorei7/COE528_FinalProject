@@ -21,17 +21,9 @@ public class OwnerBookPanel extends javax.swing.JPanel {
     public OwnerBookPanel(BookStoreApp app) {
         initComponents();
         this.app = app;
-        
-        
-        
+
         refreshTable();
-        
-        
-        
-        
-        
-        
-        
+
     }
 
     /**
@@ -68,9 +60,11 @@ public class OwnerBookPanel extends javax.swing.JPanel {
         exitBook = new javax.swing.JPanel();
         labelExit = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
         delBook = new javax.swing.JPanel();
+        delPanel = new javax.swing.JPanel();
+        delLabel = new javax.swing.JLabel();
+        delButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1000, 800));
         setLayout(new java.awt.BorderLayout());
@@ -105,6 +99,11 @@ public class OwnerBookPanel extends javax.swing.JPanel {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        bookTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bookTableMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(bookTable);
@@ -161,6 +160,11 @@ public class OwnerBookPanel extends javax.swing.JPanel {
 
         addButton.setActionCommand("addButtonAction");
         addButton.setLabel("Confirm");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
@@ -203,6 +207,7 @@ public class OwnerBookPanel extends javax.swing.JPanel {
         bottom.add(labelAdd1, java.awt.BorderLayout.LINE_START);
 
         exitBook.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        exitBook.setMinimumSize(new java.awt.Dimension(100, 200));
         exitBook.setPreferredSize(new java.awt.Dimension(400, 100));
         exitBook.setLayout(new java.awt.BorderLayout());
 
@@ -214,7 +219,6 @@ public class OwnerBookPanel extends javax.swing.JPanel {
         labelExit.add(jLabel7, java.awt.BorderLayout.CENTER);
 
         exitBook.add(labelExit, java.awt.BorderLayout.PAGE_START);
-        exitBook.add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
         backButton.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         backButton.setText("Back");
@@ -228,6 +232,23 @@ public class OwnerBookPanel extends javax.swing.JPanel {
         bottom.add(exitBook, java.awt.BorderLayout.LINE_END);
 
         delBook.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        delBook.setPreferredSize(new java.awt.Dimension(198, 59));
+        delBook.setLayout(new java.awt.BorderLayout());
+
+        delPanel.setMinimumSize(new java.awt.Dimension(202, 70));
+        delPanel.setPreferredSize(new java.awt.Dimension(100, 70));
+        delPanel.setLayout(new java.awt.BorderLayout());
+
+        delLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        delLabel.setText("Book Selected to Delete: ----none-----");
+        delPanel.add(delLabel, java.awt.BorderLayout.CENTER);
+
+        delBook.add(delPanel, java.awt.BorderLayout.PAGE_START);
+
+        delButton.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        delButton.setText("Delete");
+        delBook.add(delButton, java.awt.BorderLayout.CENTER);
+
         bottom.add(delBook, java.awt.BorderLayout.CENTER);
 
         content.add(bottom, java.awt.BorderLayout.PAGE_END);
@@ -236,12 +257,40 @@ public class OwnerBookPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNameActionPerformed
-        // TODO add your handling code here:
+        // this is for the label :p 
+        
     }//GEN-LAST:event_addNameActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         app.showOwnerHome();
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+       // This thing should add more to the tingy
+       String name = addName.getText();
+       String priceTxt = addPrice.getText();
+       
+       double price = Double.parseDouble(priceTxt);
+       Owner owner = new Owner();
+       
+       
+       
+       boolean result = false;
+       result = owner.addBook(name,price);
+       
+       if (result == true){
+           addFeedback.setText("Successfully Executed.");
+           refreshTable();
+       }
+       else{
+           addFeedback.setText("Error!");
+       }
+       
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void bookTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bookTableMouseClicked
 
     private void refreshTable(){
         books = BookManager.getBooks();
@@ -281,6 +330,9 @@ public class OwnerBookPanel extends javax.swing.JPanel {
     private javax.swing.JPanel bottom;
     private javax.swing.JPanel content;
     private javax.swing.JPanel delBook;
+    private javax.swing.JButton delButton;
+    private javax.swing.JLabel delLabel;
+    private javax.swing.JPanel delPanel;
     private javax.swing.JPanel exitBook;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
@@ -290,7 +342,6 @@ public class OwnerBookPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel labelAdd;
     private javax.swing.JPanel labelAdd1;

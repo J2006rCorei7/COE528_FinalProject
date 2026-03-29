@@ -2,3 +2,22 @@ Harry Potter and the Philosopher's Stone	19.99
 The Hobbit	15.50
 Clean Code	42.00
 Introduction to Java	89.95
+The Epstein Files	299.99
+How to Rage Bait your Girlfriend	1.00
+How to NOT Rage Bait your Girlfriend	199.57
+Dog Man	15.99
+Dog Man - Lord of the Fleas	15.99
+C++ Essentials for dummies	19.99
+Netbeans: The Definitive Guide	69.95
+Learn Java The Easy Way: A Hands-on Introduction to Programming	45.99
+Jujutsu Kaisen, Vol 1	15.99
+Jujutsu Kaisen, Vol 2	15.99
+Jujutsu Kaisen, Vol 3	15.99
+Jujutsu Kaisen, Vol 4	15.99
+Jujutsu Kaisen, Vol 5	15.99
+Jujutsu Kaisen, Vol 6	15.99
+Jujutsu Kaisen, Vol 7	15.99
+KJV Holy Bible	12.50
+The Holy Quran - Arabic with English Translaton by Abdullah Yusuf Ali	27.95
+Program Development in Java: Abstraction, Specification, and Object-Oriented Design	137.41
+Coding Games in Python	29.99
