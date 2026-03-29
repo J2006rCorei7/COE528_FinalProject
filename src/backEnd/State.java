@@ -4,10 +4,8 @@
  */
 package backEnd;
 
-/**
- *
- * @author karlh
- */
-public abstract class State {
-    
+public interface State {
+    void buy(Customer customer, double cost);
+    void redeemPointsAndBuy(Customer customer, double cost);
+    String getStatus();
 }
