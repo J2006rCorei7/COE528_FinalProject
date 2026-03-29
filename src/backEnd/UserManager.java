@@ -103,7 +103,7 @@ public class UserManager {
     }
     
     public static void logout() {
-        currentCustomer = null;
+        currentCustomer = new Customer("", "", 0);
     }
     
     // ACCESS: Login Panel 
