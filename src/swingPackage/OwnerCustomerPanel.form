@@ -123,6 +123,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="userTableMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -437,7 +440,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel3">
+                    <Component class="javax.swing.JLabel" name="delLabel">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="text" type="java.lang.String" value="Customer data Selected to Delete: ----none-----"/>

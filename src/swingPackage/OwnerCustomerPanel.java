@@ -59,7 +59,7 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
         backButton = new javax.swing.JButton();
         delBook = new javax.swing.JPanel();
         delFeedback = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        delLabel = new javax.swing.JLabel();
         delButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -95,6 +95,11 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        userTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userTableMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(userTable);
@@ -228,9 +233,9 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
         delFeedback.setRequestFocusEnabled(false);
         delFeedback.setLayout(new java.awt.BorderLayout());
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Customer data Selected to Delete: ----none-----");
-        delFeedback.add(jLabel3, java.awt.BorderLayout.CENTER);
+        delLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        delLabel.setText("Customer data Selected to Delete: ----none-----");
+        delFeedback.add(delLabel, java.awt.BorderLayout.CENTER);
 
         delBook.add(delFeedback, java.awt.BorderLayout.PAGE_START);
 
@@ -259,7 +264,43 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
-        // TODO add your handling code here:
+        int[] rows = userTable.getSelectedRows();
+
+        if (rows.length == 0) {
+            delLabel.setText("Customer Selected to Delete: ----none-----");
+            return;
+        }
+
+        Owner owner = new Owner();
+        ArrayList<String> delUserList = new ArrayList<>();
+        
+        // collect selected usernames names first
+        for (int row : rows) {
+            String name = userTable.getValueAt(row, 0).toString();
+            delUserList.add(name);
+        }
+        
+        boolean allRemoved = true;
+        
+        // now delete them
+        for (String name : delUserList) {
+            boolean removed = owner.removeCustomer(name);
+            if (!removed) {
+                allRemoved = false;
+            }
+        }
+
+        refreshTable();
+
+        if (allRemoved) {
+            delLabel.setText("Deleted selected user(s).");
+        } else {
+            delLabel.setText("Some selected users could not be deleted.");
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_delButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -285,6 +326,22 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void userTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTableMouseClicked
+        int[] rows = userTable.getSelectedRows();
+        
+        if (rows.length == 0){
+            delLabel.setText("Customer Selected to Delete: ----none-----");
+        } 
+        else if (rows.length == 1) {
+            String name = userTable.getValueAt(rows[0], 0).toString();
+            delLabel.setText("Customer Selected to Delete: " + name);
+        }
+        else {
+            delLabel.setText("Number of Customers Selected to Delete: " + rows.length);
+        }
+        
+    }//GEN-LAST:event_userTableMouseClicked
 
     
     private void refreshTable(){
@@ -331,11 +388,11 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
     private javax.swing.JPanel delBook;
     private javax.swing.JButton delButton;
     private javax.swing.JPanel delFeedback;
+    private javax.swing.JLabel delLabel;
     private javax.swing.JPanel exitBook;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
