@@ -5,7 +5,7 @@
 package swingPackage;
 
 import frontEnd.BookStoreApp;
-
+import backEnd.*;
 /**
  *
  * @author Julian
@@ -31,6 +31,7 @@ public class LoginPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         title = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -43,11 +44,15 @@ public class LoginPanel extends javax.swing.JPanel {
         button = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
         inputField = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         usrName = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         usrPass = new javax.swing.JPasswordField();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
+        jPanel1 = new javax.swing.JPanel();
         errLabel = new javax.swing.JLabel();
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         login_label = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -62,7 +67,7 @@ public class LoginPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Bookstore Application v1");
+        jLabel1.setText("Bookstore Application v1 - Login Page");
         title.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         add(title, java.awt.BorderLayout.PAGE_START);
@@ -134,64 +139,74 @@ public class LoginPanel extends javax.swing.JPanel {
 
         Center.add(button, java.awt.BorderLayout.PAGE_END);
 
-        jLabel2.setText("Username");
+        inputField.setLayout(new java.awt.GridBagLayout());
 
-        usrName.setToolTipText("Enter Username here");
+        jLabel4.setText("Username");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        inputField.add(jLabel4, gridBagConstraints);
+
+        jLabel7.setText("Password");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        inputField.add(jLabel7, gridBagConstraints);
+
+        usrName.setPreferredSize(new java.awt.Dimension(331, 22));
         usrName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usrNameActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        inputField.add(usrName, gridBagConstraints);
 
-        jLabel3.setText("Password");
-
-        usrPass.setText("jPasswordField1");
+        usrPass.setMinimumSize(new java.awt.Dimension(82, 22));
+        usrPass.setPreferredSize(new java.awt.Dimension(331, 22));
         usrPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usrPassActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        inputField.add(usrPass, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 16;
+        gridBagConstraints.ipady = 16;
+        inputField.add(filler1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipady = 13;
+        inputField.add(filler2, gridBagConstraints);
+
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
         errLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        errLabel.setText("Awaiting Login info.......");
-        errLabel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                errLabelPropertyChange(evt);
-            }
-        });
+        errLabel.setText("Awaiting Login Info......");
+        jPanel1.add(errLabel, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout inputFieldLayout = new javax.swing.GroupLayout(inputField);
-        inputField.setLayout(inputFieldLayout);
-        inputFieldLayout.setHorizontalGroup(
-            inputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inputFieldLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(inputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(usrName)
-                    .addComponent(usrPass))
-                .addContainerGap())
-            .addGroup(inputFieldLayout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addComponent(errLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        inputFieldLayout.setVerticalGroup(
-            inputFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inputFieldLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(usrName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(usrPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(errLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 6;
+        inputField.add(jPanel1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipady = 15;
+        inputField.add(filler3, gridBagConstraints);
 
         Center.add(inputField, java.awt.BorderLayout.CENTER);
 
@@ -237,16 +252,40 @@ public class LoginPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        app.showOwnerHome();
+        String name = usrName.getText();
+        char[] pass = usrPass.getPassword();
+        
+        int result;
+        
+        result = UserManager.login(name, pass);
+        
+        if (result == 1){
+            app.showOwnerHome();
+            errLabel.setText("Awaiting Login Info......");
+        } 
+        else if (result == 0){
+            
+        }
+        else {
+            errLabel.setText("Error, Incorrect login info. Try again.");
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void usrNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usrNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usrNameActionPerformed
-
-    private void errLabelPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_errLabelPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_errLabelPropertyChange
 
     private void usrPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usrPassActionPerformed
         // TODO add your handling code here:
@@ -258,11 +297,15 @@ public class LoginPanel extends javax.swing.JPanel {
     private javax.swing.JPanel b1;
     private javax.swing.JPanel button;
     private javax.swing.JLabel errLabel;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
+    private javax.swing.Box.Filler filler3;
     private javax.swing.JPanel inputField;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

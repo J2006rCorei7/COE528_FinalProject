@@ -3,31 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package swingPackage;
-
 import backEnd.*;
 import frontEnd.BookStoreApp;
 import java.util.ArrayList;
-
 /**
  *
  * @author Julian
  */
-public class OwnerBookPanel extends javax.swing.JPanel {
-    
-    
+public class OwnerCustomerPanel extends javax.swing.JPanel {
+
     /**
-     * Creates new form OwnerBookPanel
+     * Creates new form OwnerCustomerPanel
      */
-    public OwnerBookPanel(BookStoreApp app) {
+    public OwnerCustomerPanel(BookStoreApp app) {
         initComponents();
         this.app = app;
-        
-        bookTable.setRowSelectionAllowed(true);
-        bookTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        
-        
         refreshTable();
-
+        
     }
 
     /**
@@ -45,15 +37,15 @@ public class OwnerBookPanel extends javax.swing.JPanel {
         content = new javax.swing.JPanel();
         top = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        bookTable = new javax.swing.JTable();
+        userTable = new javax.swing.JTable();
         middle = new javax.swing.JPanel();
         labelAdd = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        addBook = new javax.swing.JPanel();
+        addCustomer = new javax.swing.JPanel();
         addName = new javax.swing.JTextField();
-        addPrice = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        addPassword = new javax.swing.JTextField();
+        usrNameLabel = new javax.swing.JLabel();
+        passLabel = new javax.swing.JLabel();
         addButton = new java.awt.Button();
         addFeedback = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
@@ -66,7 +58,7 @@ public class OwnerBookPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         delBook = new javax.swing.JPanel();
-        delPanel = new javax.swing.JPanel();
+        delFeedback = new javax.swing.JPanel();
         delLabel = new javax.swing.JLabel();
         delButton = new javax.swing.JButton();
 
@@ -79,7 +71,7 @@ public class OwnerBookPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Bookstore Application v1 - Book Manager");
+        jLabel1.setText("Bookstore Application v1 - Customer Manager");
         title.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         add(title, java.awt.BorderLayout.PAGE_START);
@@ -89,28 +81,28 @@ public class OwnerBookPanel extends javax.swing.JPanel {
         top.setPreferredSize(new java.awt.Dimension(100, 258));
         top.setLayout(new java.awt.BorderLayout());
 
-        bookTable.setModel(new javax.swing.table.DefaultTableModel(
+        userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Book Name", "Price"
+                "Username", "Password", "Points"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        bookTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        userTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bookTableMouseClicked(evt);
+                userTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(bookTable);
+        jScrollPane1.setViewportView(userTable);
 
         top.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -124,13 +116,13 @@ public class OwnerBookPanel extends javax.swing.JPanel {
         labelAdd.setLayout(new java.awt.BorderLayout());
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Add a book to the store:");
+        jLabel2.setText("Add a Customer to the database");
         labelAdd.add(jLabel2, java.awt.BorderLayout.CENTER);
 
         middle.add(labelAdd, java.awt.BorderLayout.LINE_START);
 
-        addBook.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        addBook.setLayout(new java.awt.GridBagLayout());
+        addCustomer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        addCustomer.setLayout(new java.awt.GridBagLayout());
 
         addName.setPreferredSize(new java.awt.Dimension(300, 22));
         addName.addActionListener(new java.awt.event.ActionListener() {
@@ -141,26 +133,26 @@ public class OwnerBookPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        addBook.add(addName, gridBagConstraints);
+        addCustomer.add(addName, gridBagConstraints);
 
-        addPrice.setPreferredSize(new java.awt.Dimension(300, 22));
+        addPassword.setPreferredSize(new java.awt.Dimension(300, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        addBook.add(addPrice, gridBagConstraints);
+        addCustomer.add(addPassword, gridBagConstraints);
 
-        jLabel3.setText("Book Name/Label");
+        usrNameLabel.setText("Username");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        addBook.add(jLabel3, gridBagConstraints);
+        addCustomer.add(usrNameLabel, gridBagConstraints);
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("Price of book");
+        passLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        passLabel.setText("Password");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        addBook.add(jLabel4, gridBagConstraints);
+        addCustomer.add(passLabel, gridBagConstraints);
 
         addButton.setActionCommand("addButtonAction");
         addButton.setLabel("Confirm");
@@ -173,20 +165,20 @@ public class OwnerBookPanel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.ipadx = 31;
-        addBook.add(addButton, gridBagConstraints);
+        addCustomer.add(addButton, gridBagConstraints);
 
-        addFeedback.setText("Add book to store");
+        addFeedback.setText("Add new User to Database");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        addBook.add(addFeedback, gridBagConstraints);
+        addCustomer.add(addFeedback, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 48;
-        addBook.add(filler1, gridBagConstraints);
+        addCustomer.add(filler1, gridBagConstraints);
 
-        middle.add(addBook, java.awt.BorderLayout.CENTER);
+        middle.add(addCustomer, java.awt.BorderLayout.CENTER);
 
         content.add(middle, java.awt.BorderLayout.CENTER);
 
@@ -199,7 +191,7 @@ public class OwnerBookPanel extends javax.swing.JPanel {
         labelAdd1.setLayout(new java.awt.GridBagLayout());
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Delete book from store");
+        jLabel5.setText("Delete a Customer from the Database");
         labelAdd1.add(jLabel5, new java.awt.GridBagConstraints());
 
         jLabel6.setText("or return to Main Menu");
@@ -211,7 +203,6 @@ public class OwnerBookPanel extends javax.swing.JPanel {
         bottom.add(labelAdd1, java.awt.BorderLayout.LINE_START);
 
         exitBook.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        exitBook.setMinimumSize(new java.awt.Dimension(100, 200));
         exitBook.setPreferredSize(new java.awt.Dimension(400, 100));
         exitBook.setLayout(new java.awt.BorderLayout());
 
@@ -236,18 +227,17 @@ public class OwnerBookPanel extends javax.swing.JPanel {
         bottom.add(exitBook, java.awt.BorderLayout.LINE_END);
 
         delBook.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        delBook.setPreferredSize(new java.awt.Dimension(198, 59));
         delBook.setLayout(new java.awt.BorderLayout());
 
-        delPanel.setMinimumSize(new java.awt.Dimension(202, 70));
-        delPanel.setPreferredSize(new java.awt.Dimension(100, 70));
-        delPanel.setLayout(new java.awt.BorderLayout());
+        delFeedback.setPreferredSize(new java.awt.Dimension(100, 70));
+        delFeedback.setRequestFocusEnabled(false);
+        delFeedback.setLayout(new java.awt.BorderLayout());
 
         delLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        delLabel.setText("Book Selected to Delete: ----none-----");
-        delPanel.add(delLabel, java.awt.BorderLayout.CENTER);
+        delLabel.setText("Customer data Selected to Delete: ----none-----");
+        delFeedback.add(delLabel, java.awt.BorderLayout.CENTER);
 
-        delBook.add(delPanel, java.awt.BorderLayout.PAGE_START);
+        delBook.add(delFeedback, java.awt.BorderLayout.PAGE_START);
 
         delButton.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         delButton.setText("Delete");
@@ -266,81 +256,35 @@ public class OwnerBookPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNameActionPerformed
-        // this is for the label :p 
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_addNameActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         app.showOwnerHome();
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-       // This thing should add more to the tingy
-       String name = addName.getText();
-       String priceTxt = addPrice.getText();
-       
-       double price = Double.parseDouble(priceTxt);
-       Owner owner = new Owner();
-       
-       
-       
-       boolean result = false;
-       result = owner.addBook(name,price);
-       
-       if (result == true){
-           addFeedback.setText("Successfully Executed.");
-           refreshTable();
-       }
-       else{
-           addFeedback.setText("Error!");
-       }
-       
-    }//GEN-LAST:event_addButtonActionPerformed
-
-    private void bookTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookTableMouseClicked
-        int[] rows = bookTable.getSelectedRows();
-        
-        // check if something is or is not selected
-        if (rows.length == 0){
-            delLabel.setText("Book Selected to Delete: ----none-----");
-        } 
-        else if (rows.length == 1) {
-            String name = bookTable.getValueAt(rows[0], 0).toString();
-            delLabel.setText("Book Selected to Delete: " + name);
-        }
-        else {
-            delLabel.setText("Number of Books Selected to Delete: " + rows.length);
-        }
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_bookTableMouseClicked
-
     private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
-        int[] rows = bookTable.getSelectedRows();
+        int[] rows = userTable.getSelectedRows();
 
         if (rows.length == 0) {
-            delLabel.setText("Book Selected to Delete: ----none-----");
+            delLabel.setText("Customer Selected to Delete: ----none-----");
             return;
         }
 
         Owner owner = new Owner();
-        ArrayList<String> delBookList = new ArrayList<>();
-
-        // collect selected book names first
+        ArrayList<String> delUserList = new ArrayList<>();
+        
+        // collect selected usernames names first
         for (int row : rows) {
-            String name = bookTable.getValueAt(row, 0).toString();
-            delBookList.add(name);
+            String name = userTable.getValueAt(row, 0).toString();
+            delUserList.add(name);
         }
-
+        
         boolean allRemoved = true;
-
+        
         // now delete them
-        for (String name : delBookList) {
-            boolean removed = owner.removeBook(name);
+        for (String name : delUserList) {
+            boolean removed = owner.removeCustomer(name);
             if (!removed) {
                 allRemoved = false;
             }
@@ -349,27 +293,74 @@ public class OwnerBookPanel extends javax.swing.JPanel {
         refreshTable();
 
         if (allRemoved) {
-            delLabel.setText("Deleted selected book(s).");
+            delLabel.setText("Deleted selected user(s).");
         } else {
-            delLabel.setText("Some selected books could not be deleted.");
+            delLabel.setText("Some selected users could not be deleted.");
         }
+        
+        
+        
+        
     }//GEN-LAST:event_delButtonActionPerformed
 
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        String name = addName.getText();
+        String password = addPassword.getText();
+        
+        Owner owner = new Owner();
+        boolean result = false;
+        result = owner.addCustomer(name, password);
+        
+        if (result == true){
+           addFeedback.setText("Successfully Executed.");
+           refreshTable();
+        }
+        else{
+           addFeedback.setText("Error!");
+        }
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void userTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTableMouseClicked
+        int[] rows = userTable.getSelectedRows();
+        
+        if (rows.length == 0){
+            delLabel.setText("Customer Selected to Delete: ----none-----");
+        } 
+        else if (rows.length == 1) {
+            String name = userTable.getValueAt(rows[0], 0).toString();
+            delLabel.setText("Customer Selected to Delete: " + name);
+        }
+        else {
+            delLabel.setText("Number of Customers Selected to Delete: " + rows.length);
+        }
+        
+    }//GEN-LAST:event_userTableMouseClicked
+
+    
     private void refreshTable(){
-        books = BookManager.getBooks();
+        customers = UserManager.getCustomers();
         
         javax.swing.table.DefaultTableModel model = 
-                   (javax.swing.table.DefaultTableModel) bookTable.getModel();
+                   (javax.swing.table.DefaultTableModel) userTable.getModel();
         
         // Clear old rows
         model.setRowCount(0);
         
         
         
-        for (Book book : books){
+        for (Customer customer : customers){
             model.addRow(new Object[]{
-            book.getName(),
-            book.getPrice()
+            customer.getName(),
+            customer.getPassword(),
+            customer.getPoints()
+             
         });
         }
         
@@ -378,30 +369,30 @@ public class OwnerBookPanel extends javax.swing.JPanel {
     
     
     
+    
+    
     // Variables declaratation - Manually created
-    private ArrayList<Book> books;
+    private ArrayList<Customer> customers;
     private BookStoreApp app;
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel addBook;
     private java.awt.Button addButton;
+    private javax.swing.JPanel addCustomer;
     private javax.swing.JLabel addFeedback;
     private javax.swing.JTextField addName;
-    private javax.swing.JTextField addPrice;
+    private javax.swing.JTextField addPassword;
     private javax.swing.JButton backButton;
-    private javax.swing.JTable bookTable;
     private javax.swing.JPanel bottom;
     private javax.swing.JPanel content;
     private javax.swing.JPanel delBook;
     private javax.swing.JButton delButton;
+    private javax.swing.JPanel delFeedback;
     private javax.swing.JLabel delLabel;
-    private javax.swing.JPanel delPanel;
     private javax.swing.JPanel exitBook;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -410,7 +401,10 @@ public class OwnerBookPanel extends javax.swing.JPanel {
     private javax.swing.JPanel labelAdd1;
     private javax.swing.JPanel labelExit;
     private javax.swing.JPanel middle;
+    private javax.swing.JLabel passLabel;
     private javax.swing.JPanel title;
     private javax.swing.JPanel top;
+    private javax.swing.JTable userTable;
+    private javax.swing.JLabel usrNameLabel;
     // End of variables declaration//GEN-END:variables
 }
