@@ -79,10 +79,13 @@ public class BookManager {
         return shoppingCart;
     }
     
-    public void emptyShoppingCart() {
+    public static double emptyShoppingCart() {
+        double totalCost = 0;
         for (Book book : shoppingCart) {
+            totalCost += book.getPrice();
             Owner.removeBook(book);
         }
+        return totalCost;
     }
     
     // EFFECTS: Overwrites entire books.txt file with new data
