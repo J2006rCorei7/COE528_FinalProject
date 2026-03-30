@@ -2,7 +2,6 @@ Harry Potter and the Philosopher's Stone	19.99
 The Hobbit	15.50
 Clean Code	42.00
 Introduction to Java	89.95
-The Epstein Files	299.99
 How to Rage Bait your Girlfriend	1.00
 How to NOT Rage Bait your Girlfriend	199.57
 Dog Man	15.99

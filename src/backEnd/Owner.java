@@ -69,7 +69,8 @@ public class Owner {
 
         while (iterator.hasNext()) {
             Book book = iterator.next();
-            if (book.equals(bookObj)) {
+            if (book.getName().trim().equalsIgnoreCase(bookObj.getName().trim())
+                    && book.getPrice() == bookObj.getPrice()) {
                 iterator.remove();
                 BookManager.saveData(books);
                 return true;
