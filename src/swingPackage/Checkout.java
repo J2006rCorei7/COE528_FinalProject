@@ -27,15 +27,21 @@ public class Checkout extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         title = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
         top = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         bottom = new javax.swing.JPanel();
         logout = new javax.swing.JButton();
         middle = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
 
+        setPreferredSize(new java.awt.Dimension(1000, 800));
         setLayout(new java.awt.BorderLayout());
 
         title.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -53,17 +59,12 @@ public class Checkout extends javax.swing.JPanel {
 
         top.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         top.setPreferredSize(new java.awt.Dimension(1000, 258));
+        top.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout topLayout = new javax.swing.GroupLayout(top);
-        top.setLayout(topLayout);
-        topLayout.setHorizontalGroup(
-            topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 998, Short.MAX_VALUE)
-        );
-        topLayout.setVerticalGroup(
-            topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 256, Short.MAX_VALUE)
-        );
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Total Cost: ");
+        top.add(jLabel2, java.awt.BorderLayout.CENTER);
 
         content.add(top, java.awt.BorderLayout.PAGE_START);
 
@@ -79,17 +80,23 @@ public class Checkout extends javax.swing.JPanel {
 
         middle.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         middle.setPreferredSize(new java.awt.Dimension(1000, 258));
+        middle.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout middleLayout = new javax.swing.GroupLayout(middle);
-        middle.setLayout(middleLayout);
-        middleLayout.setHorizontalGroup(
-            middleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 998, Short.MAX_VALUE)
-        );
-        middleLayout.setVerticalGroup(
-            middleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 262, Short.MAX_VALUE)
-        );
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setText("Current Points:");
+        middle.add(jLabel3, new java.awt.GridBagConstraints());
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel4.setText("Current Status:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        middle.add(jLabel4, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipady = 21;
+        middle.add(filler1, gridBagConstraints);
 
         content.add(middle, java.awt.BorderLayout.CENTER);
 
@@ -102,7 +109,11 @@ public class Checkout extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bottom;
     private javax.swing.JPanel content;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton logout;
     private javax.swing.JPanel middle;
     private javax.swing.JPanel title;
