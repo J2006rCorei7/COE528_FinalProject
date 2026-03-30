@@ -22,10 +22,8 @@ public class SilverState implements State {
         int remainderPoints = customer.getPoints() % 100;
         
         int redeemablePoints = Math.min(customer.getPoints(), (int)(cost * 100));
-        System.out.println("SilverState redeemablePoints = " + redeemablePoints);
         double finalCost = cost - (redeemablePoints / 100.0);
         setDiscountedCost(redeemablePoints / 100);
-        System.out.println("SilverState discountedCost = " + discountedCost);
         
         customer.removePoints(redeemablePoints);
         customer.addPoints((int)(10 * finalCost) + remainderPoints);
@@ -42,6 +40,7 @@ public class SilverState implements State {
         return discountedCost;
     }
     
+    @Override
     public void setDiscountedCost(double discountedCost) {
         this.discountedCost = discountedCost;
     }

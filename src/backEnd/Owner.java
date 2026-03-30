@@ -5,6 +5,7 @@
 package backEnd;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *  This class manages functions that only the Owner is allowed to execute, such as adding and removing books and customers
@@ -21,14 +22,16 @@ public class Owner {
     *    @return true if the addition was successful, false if the book already exists
     */
     public static boolean addBook(String bookName, double bookPrice) {
-        // Check if book already exists
+        ArrayList<Book> books = BookManager.getBooks();
+
         for (Book book : books) {
-            if (book.getName().equals(bookName)) {
-                System.out.println("Book already exists."); // Print error
+            if (book.getName().trim().equalsIgnoreCase(bookName.trim())) {
+                System.out.println("Book already exists.");
                 return false;
             }
         }
-        books.add(new Book(bookName, bookPrice));
+
+        books.add(new Book(bookName.trim(), bookPrice));
         BookManager.saveData(books);
         return true;
     }
@@ -39,15 +42,19 @@ public class Owner {
     *    @return true if the removal was successful, false if the book doesn't exist
     */
     public static boolean removeBook(String bookName) {
-        // Look for book in the system
-        for (Book book : books) {
-            if (book.getName().equals(bookName)) {
-                books.remove(book);
+        ArrayList<Book> books = BookManager.getBooks();
+        Iterator<Book> iterator = books.iterator();
+
+        while (iterator.hasNext()) {
+            Book book = iterator.next();
+            if (book.getName().trim().equalsIgnoreCase(bookName.trim())) {
+                iterator.remove();
                 BookManager.saveData(books);
                 return true;
             }
         }
-        System.out.println("Book doesn't exist."); // If we reach this point and we haven't removed the book, notify user
+
+        System.out.println("Book doesn't exist.");
         return false;
     }
     
@@ -57,15 +64,19 @@ public class Owner {
     *    @return true if the removal was successful, false if the book doesn't exist
     */
     public static boolean removeBook(Book bookObj) {
-        // Look for book in the system
-        for (Book book : books) {
+        ArrayList<Book> books = BookManager.getBooks();
+        Iterator<Book> iterator = books.iterator();
+
+        while (iterator.hasNext()) {
+            Book book = iterator.next();
             if (book.equals(bookObj)) {
-                books.remove(bookObj);
+                iterator.remove();
                 BookManager.saveData(books);
                 return true;
             }
         }
-        System.out.println("Book doesn't exist."); // If we reach this point and we haven't removed the book, notify user
+
+        System.out.println("Book doesn't exist.");
         return false;
     }
     
@@ -76,14 +87,16 @@ public class Owner {
     *    @return true if the addition was successful, false if the username already exists
     */
     public static boolean addCustomer(String username, String password) {
-        // Check if customer is already exists
+        ArrayList<Customer> customers = UserManager.getCustomers();
+
         for (Customer customer : customers) {
-            if (customer.getName().equals(username)) {
-                System.out.println("Customer already exists."); // Print error
+            if (customer.getName().trim().equalsIgnoreCase(username.trim())) {
+                System.out.println("Customer already exists.");
                 return false;
             }
         }
-        customers.add(new Customer(username, password));
+
+        customers.add(new Customer(username.trim(), password));
         UserManager.saveData(customers);
         return true;
     }
@@ -94,15 +107,19 @@ public class Owner {
     *    @return true if the removal was successful, false if the customer doesn't exist
     */
     public static boolean removeCustomer(String username) {
-        // Look for customer in the system
-        for (Customer customer : customers) {
-            if (customer.getName().equals(username)) {
-                customers.remove(customer);
+        ArrayList<Customer> customers = UserManager.getCustomers();
+        Iterator<Customer> iterator = customers.iterator();
+
+        while (iterator.hasNext()) {
+            Customer customer = iterator.next();
+            if (customer.getName().trim().equalsIgnoreCase(username.trim())) {
+                iterator.remove();
                 UserManager.saveData(customers);
                 return true;
             }
         }
-        System.out.println("Customer doesn't exist."); // If we reach this point and we haven't removed the customer, notify user
+
+        System.out.println("Customer doesn't exist.");
         return false;
     }
 }

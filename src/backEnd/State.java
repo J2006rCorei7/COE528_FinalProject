@@ -9,4 +9,5 @@ public interface State {
     void redeemPointsAndBuy(Customer customer, double cost);
     String getStatus();
     double getDiscountedCost();
+    void setDiscountedCost(double discountedCost);
 }

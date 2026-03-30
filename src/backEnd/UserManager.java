@@ -104,11 +104,26 @@ public class UserManager {
     }
     
     public static void logout() {
+        currentCustomer.setDiscountedCost(0);
         currentCustomer = new Customer("", "", 0);
     }
     
     // ACCESS: Login Panel 
     public static Customer getCustomer() {
         return currentCustomer;
+    }
+    
+    public static void saveCurrentCustomer() {
+        ArrayList<Customer> customers = getCustomers();
+
+        for (int i = 0; i < customers.size(); i++) {
+            if (customers.get(i).getName().equals(currentCustomer.getName())) {
+                customers.set(i, currentCustomer);
+                saveData(customers);
+                return;
+            }
+        }
+
+        System.out.println("Current customer not found in customers.txt");
     }
 }

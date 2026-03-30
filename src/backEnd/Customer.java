@@ -55,11 +55,15 @@ public class Customer {
     // EFFECTS: Awards this customer points for purchasing a book
     public void buy(double cost) {
         state.buy(this, cost);
+        updateState();
+        UserManager.saveCurrentCustomer();
     }
     
     // EFFECTS: Redeems this customer's points to get a discounted price for a book
     public void redeemPointsAndBuy(double cost) {
         state.redeemPointsAndBuy(this, cost);
+        updateState();
+        UserManager.saveCurrentCustomer();
     }
     
     public String getName() {
@@ -81,5 +85,9 @@ public class Customer {
     public double getDiscountedCost() {
         System.out.println("Customer getDiscountedCost() = " + state.getDiscountedCost());
         return state.getDiscountedCost();
+    }
+    
+    protected void setDiscountedCost(double discountedCost) {
+        state.setDiscountedCost(discountedCost);
     }
 }
