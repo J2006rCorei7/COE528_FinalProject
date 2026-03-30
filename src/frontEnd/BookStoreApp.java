@@ -80,6 +80,7 @@ public class BookStoreApp extends JFrame{
     
     // Navigation Methods
     public void showLogin() {
+        customerHomePanel.refreshStatus();
         layout.show(mainPanel, "LOGIN");
     }
     
