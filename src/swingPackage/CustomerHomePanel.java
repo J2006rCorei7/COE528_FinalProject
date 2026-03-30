@@ -91,7 +91,7 @@ public class CustomerHomePanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Bookstore Application v1 - Login Page");
+        jLabel1.setText("Bookstore Application v1 - Customer Home");
         title.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         add(title, java.awt.BorderLayout.PAGE_START);
