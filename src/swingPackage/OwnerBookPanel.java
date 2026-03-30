@@ -355,7 +355,7 @@ public class OwnerBookPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_delButtonActionPerformed
 
-    private void refreshTable(){
+    public void refreshTable(){
         books = BookManager.getBooks();
         
         javax.swing.table.DefaultTableModel model = 

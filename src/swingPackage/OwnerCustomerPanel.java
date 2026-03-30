@@ -343,7 +343,7 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_userTableMouseClicked
 
     
-    private void refreshTable(){
+    public void refreshTable(){
         customers = UserManager.getCustomers();
         
         javax.swing.table.DefaultTableModel model = 

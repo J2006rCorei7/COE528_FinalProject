@@ -90,9 +90,13 @@ public class BookStoreApp extends JFrame{
     }
     
     public void showOwnerBook(){
+        ownerBookPanel.refreshTable();
         layout.show(mainPanel, "OWNERBOOK");
+        
+       
     }
     public void showOwnerCustomer(){
+        ownerCustomerPanel.refreshTable();
         layout.show(mainPanel, "OWNERCUSTOMER");
     }
     
