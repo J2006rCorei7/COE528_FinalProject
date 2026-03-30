@@ -92,6 +92,7 @@ public class BookStoreApp extends JFrame{
     }
     
     public void showCustomerHome(){
+        customerHomePanel.refreshStatus();
         layout.show(mainPanel, "CUSTOMERHOME");
     }
     

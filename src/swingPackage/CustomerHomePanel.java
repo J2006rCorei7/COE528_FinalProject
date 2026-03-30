@@ -50,10 +50,11 @@ public class CustomerHomePanel extends javax.swing.JPanel {
         
     }
     
-    private void refreshStatus(){
+    public void refreshStatus(){
         Customer customer = UserManager.getCustomer();
         usrName.setText("Welcome " + customer.getName() + ".");
-        usrPoints.setText("You have" + customer.getPoints()+ "points.");
+        System.out.println("DEBUG: "+ customer.getName());
+        usrPoints.setText("You have " + customer.getPoints()+ " points.");
         usrStatus.setText("Your status is " + customer.getStatus() +".");
     }
     

@@ -273,6 +273,7 @@ public class LoginPanel extends javax.swing.JPanel {
             app.showCustomerHome();
             errLabel.setText("Awaiting Login Info......");
             clearFields();
+            
         }
         else {
             errLabel.setText("Error, Incorrect login info. Try again.");
