@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class BookManager {
     private static final String filePath = "src/backEnd/books.txt"; // To be edited for Demo
     
-    private ArrayList<Book> shoppingCart;
+    private static ArrayList<Book> shoppingCart;
     
     // EFFECTS: Reads books.txt line by line and returns an ArrayList of Book objects
     public static ArrayList<Book> getBooks() {
@@ -71,7 +71,7 @@ public class BookManager {
         return selectedBooks;
     }
     
-    public void setShoppingCart(String[] bookNames) {
+    public static void setShoppingCart(String[] bookNames) {
         shoppingCart = getBooks(bookNames);
     }
     

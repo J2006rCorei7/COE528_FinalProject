@@ -78,6 +78,9 @@ public class CustomerHomePanel extends javax.swing.JPanel {
         usrPoints = new javax.swing.JLabel();
         usrStatus = new javax.swing.JLabel();
         bottom = new javax.swing.JPanel();
+        buy = new javax.swing.JButton();
+        buyPoints = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
         middle = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         bookTable = new javax.swing.JTable();
@@ -124,17 +127,31 @@ public class CustomerHomePanel extends javax.swing.JPanel {
 
         bottom.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         bottom.setPreferredSize(new java.awt.Dimension(1000, 258));
+        bottom.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout bottomLayout = new javax.swing.GroupLayout(bottom);
-        bottom.setLayout(bottomLayout);
-        bottomLayout.setHorizontalGroup(
-            bottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 998, Short.MAX_VALUE)
-        );
-        bottomLayout.setVerticalGroup(
-            bottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 256, Short.MAX_VALUE)
-        );
+        buy.setText("Buy Selected books");
+        buy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyActionPerformed(evt);
+            }
+        });
+        bottom.add(buy, new java.awt.GridBagConstraints());
+
+        buyPoints.setText("Buy Selected Books with Points");
+        buyPoints.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyPointsActionPerformed(evt);
+            }
+        });
+        bottom.add(buyPoints, new java.awt.GridBagConstraints());
+
+        logout.setText("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+        bottom.add(logout, new java.awt.GridBagConstraints());
 
         content.add(bottom, java.awt.BorderLayout.PAGE_END);
 
@@ -173,17 +190,64 @@ public class CustomerHomePanel extends javax.swing.JPanel {
         add(content, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buyPointsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyPointsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buyPointsActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        app.showLogin();
+        UserManager.logout();
+    }//GEN-LAST:event_logoutActionPerformed
+
+    private void buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionPerformed
+        BookManager.setShoppingCart(getSelectedBooks());
+    }//GEN-LAST:event_buyActionPerformed
+
+    
+    
+    
+    private String[] getSelectedBooks(){
+        ArrayList<String> selBooks = new ArrayList<>();
+        
+        // set table reference
+        javax.swing.table.DefaultTableModel model =
+            (javax.swing.table.DefaultTableModel) bookTable.getModel();
+        
+        for (int i = 0;i< model.getRowCount(); i++){
+            boolean checked = (boolean) model.getValueAt(i,2);
+            
+            if (checked){
+                String name = model.getValueAt(i,0).toString();
+                selBooks.add(name);
+            }
+        
+        }
+        
+        
+        
+        return selBooks.toArray(new String[0]);
+    }
+           
+            
+            
+
+
+    
     
     // Variables declaratation - Manually created
     private ArrayList<Book> books;
     private BookStoreApp app;
+    String[] cartBooks;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable bookTable;
     private javax.swing.JPanel bottom;
+    private javax.swing.JButton buy;
+    private javax.swing.JButton buyPoints;
     private javax.swing.JPanel content;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton logout;
     private javax.swing.JPanel middle;
     private javax.swing.JPanel title;
     private javax.swing.JPanel top;
