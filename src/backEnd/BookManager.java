@@ -48,10 +48,10 @@ public class BookManager {
             }
         } 
         catch (FileNotFoundException e) {
-            System.out.println("Could not find file");
+            System.out.println("Could not find books.txt file");
         } 
         catch (IOException e) {
-            System.out.println("IO Error");
+            System.out.println("IO Error: with books.txt file");
         }
         
         return books;

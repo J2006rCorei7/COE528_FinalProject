@@ -61,10 +61,10 @@ public class UserManager {
             }
         } 
         catch (FileNotFoundException e) {
-            System.out.println("Could not find file");
+            System.out.println("Could not find customers.txt file");
         } 
         catch (IOException e) {
-            System.out.println("IO Error");
+            System.out.println("IO Error: with customers.txt file");
         }
         
         return customers;
