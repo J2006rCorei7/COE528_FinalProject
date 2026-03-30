@@ -28,7 +28,7 @@ public class CustomerHomePanel extends javax.swing.JPanel {
         refreshStatus();
     }
     
-    private void refreshTable(){
+    public void refreshTable(){
         books = BookManager.getBooks();
         
         javax.swing.table.DefaultTableModel model = 
