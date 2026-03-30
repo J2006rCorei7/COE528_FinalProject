@@ -21,3 +21,4 @@ KJV Holy Bible	12.50
 The Holy Quran - Arabic with English Translaton by Abdullah Yusuf Ali	27.95
 Program Development in Java: Abstraction, Specification, and Object-Oriented Design	137.41
 Coding Games in Python	29.99
+Dragon Ball Z	15.99

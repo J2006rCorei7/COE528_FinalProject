@@ -11,8 +11,8 @@ import java.util.ArrayList;
  * 
  */
 public class Owner {
-    protected ArrayList<Book> books = BookManager.getBooks();             // Retrieve list of Books from books.txt
-    protected ArrayList<Customer> customers = UserManager.getCustomers(); // Retrieve list of Customers from customers.txt
+    protected static ArrayList<Book> books = BookManager.getBooks();             // Retrieve list of Books from books.txt
+    protected static ArrayList<Customer> customers = UserManager.getCustomers(); // Retrieve list of Customers from customers.txt
     
     /**
     *    Adds a new book to the collection.
@@ -20,7 +20,7 @@ public class Owner {
     *    @param bookPrice the price of the book to be added
     *    @return true if the addition was successful, false if the book already exists
     */
-    public boolean addBook(String bookName, double bookPrice) {
+    public static boolean addBook(String bookName, double bookPrice) {
         // Check if book already exists
         for (Book book : books) {
             if (book.getName().equals(bookName)) {
@@ -38,11 +38,29 @@ public class Owner {
     *    @param bookName the name of the book to be removed
     *    @return true if the removal was successful, false if the book doesn't exist
     */
-    public boolean removeBook(String bookName) {
+    public static boolean removeBook(String bookName) {
         // Look for book in the system
         for (Book book : books) {
             if (book.getName().equals(bookName)) {
                 books.remove(book);
+                BookManager.saveData(books);
+                return true;
+            }
+        }
+        System.out.println("Book doesn't exist."); // If we reach this point and we haven't removed the book, notify user
+        return false;
+    }
+    
+    /**
+    *    Removes a book from the collection.
+    *    @param bookObj the name of the book to be removed
+    *    @return true if the removal was successful, false if the book doesn't exist
+    */
+    public static boolean removeBook(Book bookObj) {
+        // Look for book in the system
+        for (Book book : books) {
+            if (book.equals(bookObj)) {
+                books.remove(bookObj);
                 BookManager.saveData(books);
                 return true;
             }
@@ -57,7 +75,7 @@ public class Owner {
     *    @param password the password of the customer to be added
     *    @return true if the addition was successful, false if the username already exists
     */
-    public boolean addCustomer(String username, String password) {
+    public static boolean addCustomer(String username, String password) {
         // Check if customer is already exists
         for (Customer customer : customers) {
             if (customer.getName().equals(username)) {
@@ -75,7 +93,7 @@ public class Owner {
     *    @param username the username of the book to be removed
     *    @return true if the removal was successful, false if the customer doesn't exist
     */
-    public boolean removeCustomer(String username) {
+    public static boolean removeCustomer(String username) {
         // Look for customer in the system
         for (Customer customer : customers) {
             if (customer.getName().equals(username)) {

@@ -79,6 +79,12 @@ public class BookManager {
         return shoppingCart;
     }
     
+    public void emptyShoppingCart() {
+        for (Book book : shoppingCart) {
+            Owner.removeBook(book);
+        }
+    }
+    
     // EFFECTS: Overwrites entire books.txt file with new data
     protected static void saveData(ArrayList<Book> books) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
