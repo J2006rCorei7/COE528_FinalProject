@@ -307,9 +307,8 @@ public class OwnerCustomerPanel extends javax.swing.JPanel {
         String name = addName.getText();
         String password = addPassword.getText();
         
-        Owner owner = new Owner();
         boolean result = false;
-        result = owner.addCustomer(name, password);
+        result = Owner.addCustomer(name, password);
         
         if (result == true){
            addFeedback.setText("Successfully Executed.");
