@@ -33,12 +33,12 @@ public class Checkout extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
         top = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        cost = new javax.swing.JLabel();
         bottom = new javax.swing.JPanel();
         logout = new javax.swing.JButton();
         middle = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        points = new javax.swing.JLabel();
+        status = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
 
         setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -61,10 +61,10 @@ public class Checkout extends javax.swing.JPanel {
         top.setPreferredSize(new java.awt.Dimension(1000, 258));
         top.setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Total Cost: ");
-        top.add(jLabel2, java.awt.BorderLayout.CENTER);
+        cost.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        cost.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cost.setText("Total Cost: ");
+        top.add(cost, java.awt.BorderLayout.CENTER);
 
         content.add(top, java.awt.BorderLayout.PAGE_START);
 
@@ -74,6 +74,11 @@ public class Checkout extends javax.swing.JPanel {
 
         logout.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         logout.setText("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
         bottom.add(logout, java.awt.BorderLayout.CENTER);
 
         content.add(bottom, java.awt.BorderLayout.PAGE_END);
@@ -82,16 +87,16 @@ public class Checkout extends javax.swing.JPanel {
         middle.setPreferredSize(new java.awt.Dimension(1000, 258));
         middle.setLayout(new java.awt.GridBagLayout());
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setText("Current Points:");
-        middle.add(jLabel3, new java.awt.GridBagConstraints());
+        points.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        points.setText("Current Points:");
+        middle.add(points, new java.awt.GridBagConstraints());
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setText("Current Status:");
+        status.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        status.setText("Current Status:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        middle.add(jLabel4, gridBagConstraints);
+        middle.add(status, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -103,19 +108,33 @@ public class Checkout extends javax.swing.JPanel {
         add(content, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        UserManager.logout();
+        app.showLogin();
+    }//GEN-LAST:event_logoutActionPerformed
+
+    
+    public void refresh(){
+        cost.setText("Total Cost: " + BookManager.emptyShoppingCart());
+        points.setText("Current Points: "+UserManager.getCustomer().getPoints());
+        status.setText("Current Status: "+UserManager.getCustomer().getStatus());
+    }
+    
+    
+    
     // Variables declaratation - Manually created
     private BookStoreApp app;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bottom;
     private javax.swing.JPanel content;
+    private javax.swing.JLabel cost;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton logout;
     private javax.swing.JPanel middle;
+    private javax.swing.JLabel points;
+    private javax.swing.JLabel status;
     private javax.swing.JPanel title;
     private javax.swing.JPanel top;
     // End of variables declaration//GEN-END:variables

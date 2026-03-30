@@ -100,6 +100,7 @@ public class BookStoreApp extends JFrame{
     }
     
     public void showCheckout(){
+        checkout.refresh();
         layout.show(mainPanel, "CHECKOUT");
     }
     
