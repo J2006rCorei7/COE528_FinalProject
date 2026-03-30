@@ -115,7 +115,9 @@ public class Checkout extends javax.swing.JPanel {
 
     
     public void refresh(){
-        cost.setText("Total Cost: " + BookManager.emptyShoppingCart());
+        System.out.println("UserManager.getCustomer().getDiscountedCost() = " + UserManager.getCustomer().getDiscountedCost());
+        double TC = BookManager.emptyShoppingCart() - UserManager.getCustomer().getDiscountedCost();
+        cost.setText("Total Cost: " + TC);
         points.setText("Current Points: "+UserManager.getCustomer().getPoints());
         status.setText("Current Status: "+UserManager.getCustomer().getStatus());
     }

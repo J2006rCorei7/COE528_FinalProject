@@ -77,4 +77,9 @@ public class Customer {
     public String getStatus() {
         return state.getStatus();
     }
+    
+    public double getDiscountedCost() {
+        System.out.println("Customer getDiscountedCost() = " + state.getDiscountedCost());
+        return state.getDiscountedCost();
+    }
 }

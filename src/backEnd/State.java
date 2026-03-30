@@ -8,4 +8,5 @@ public interface State {
     void buy(Customer customer, double cost);
     void redeemPointsAndBuy(Customer customer, double cost);
     String getStatus();
+    double getDiscountedCost();
 }
