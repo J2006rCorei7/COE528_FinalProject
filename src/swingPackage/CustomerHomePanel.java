@@ -191,7 +191,9 @@ public class CustomerHomePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buyPointsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyPointsActionPerformed
-        // TODO add your handling code here:
+        BookManager.setShoppingCart(getSelectedBooks());
+        UserManager.getCustomer().redeemPointsAndBuy(getTotalCost());
+        app.showCheckout();
     }//GEN-LAST:event_buyPointsActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
@@ -201,10 +203,27 @@ public class CustomerHomePanel extends javax.swing.JPanel {
 
     private void buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionPerformed
         BookManager.setShoppingCart(getSelectedBooks());
+        UserManager.getCustomer().buy(getTotalCost());
+        app.showCheckout();
     }//GEN-LAST:event_buyActionPerformed
 
     
-    
+    private double getTotalCost(){
+        double result = 0;
+        javax.swing.table.DefaultTableModel model =
+            (javax.swing.table.DefaultTableModel) bookTable.getModel();
+        
+        for (int i = 0;i< model.getRowCount(); i++){
+            boolean checked = (boolean) model.getValueAt(i,2);
+            
+            if (checked){
+                double val = (double)model.getValueAt(i,1);
+                result+= val;
+            }
+        
+        }
+        return result;
+    }
     
     private String[] getSelectedBooks(){
         ArrayList<String> selBooks = new ArrayList<>();
